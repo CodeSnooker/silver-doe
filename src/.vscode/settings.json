@@ -1,3 +1,25 @@
 {
-    "typescript.check.workspaceVersion": false
+    "typescript.check.workspaceVersion": false,
+    
+    "files.exclude": {
+        "**/.git": true,
+        "**/.svn": true,
+        "**/.hg": true,
+        "**/.DS_Store": true,
+        "**/*.js": { "when": "$(basename).ts"},
+        "**/*.map": true,
+        "node_modules/": true,
+        ".vscode/":true,
+        "e2e/":true,
+        "**/*.spec.ts":true,
+        "**/*.ico":true,
+        "**/*.md":true,
+        ".editorconfig":true,
+        ".gitignore":true,
+        "**/*.yml":true,
+        "**/*.log":true,
+        "LICENSE":true,
+        "karma*":true,
+        "**/*.txt":true
+    }
 }

@@ -1,0 +1,25 @@
+<md-sidenav-layout class="smd-full-height">
+
+    <md-sidenav #sidenav mode="side" class="app-sidenav">
+        Side Navigation
+    </md-sidenav>
+
+    <md-toolbar color="primary">
+        <button class="app-icon-button" (click)="sidenav.toggle()">
+            <i class="material-icons app-toolbar-menu">menu</i>
+        </button>
+    
+        Angular Material2 Example App
+
+        <span class="md-flex"></span>
+        <button md-button (click)="isDarkTheme = !isDarkTheme">TOGGLE DARK THEME</button>
+    </md-toolbar>
+
+    <div class="app-content">
+        <h1>Hello {{name}}</h1>
+        <button md-raised-button class="md-raised">Button</button>
+        <button md-raised-button class="md-raised md-primary">Primary</button>
+        <button md-raised-button disabled="true" class="md-raised md-primary">Disabled</button>
+    </div>
+
+</md-sidenav-layout>

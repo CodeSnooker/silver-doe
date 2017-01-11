@@ -1,13 +1,11 @@
 import { NgModule }      from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
-import { AppComponent }  from './app.component';
-
 import { MaterialModule } from '@angular/material';
+import { LayoutComponent }  from './layout.component';
 
 @NgModule({
   imports:      [ MaterialModule.forRoot(), BrowserModule ],
-  declarations: [ AppComponent ],
-  bootstrap:    [ AppComponent ]
+  declarations: [ LayoutComponent ],
+  bootstrap:    [ LayoutComponent ]
 })
-export class AppModule { }
+export class LayoutModule { }
