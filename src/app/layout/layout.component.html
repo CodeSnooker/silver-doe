@@ -42,32 +42,13 @@
             <div style="display: flex; flex: 1 auto; background: cyan; max-height: 75px;">
                 <input type="text" placeholder="Add new goal" />
             </div>
-            <div style="display: flex; flex: 1; height: auto; background: deeppink; flex-flow: row wrap; justify-content: space-between;" sd-center>
-                <div style="width: 240px; height: 283px; border: 1px solid black;">
-                    Goal 1 Container
-                </div>
-                <div style="width: 240px; height: 411px; border: 1px solid black;">
-                    Goal 2 Container
-                </div>
-                <div style="width: 240px; height: 205px; border: 1px solid black;">
-                    Goal 3 Container
-                </div>
-                <div style="width: 240px; height: 306px; border: 1px solid black;">
-                    Goal 4 Container
-                </div>
-                <div style="width: 240px; height: 205px; border: 1px solid black;">
-                    Goal 5 Container
-                </div>
-                <div style="width: 240px; height: 205px; border: 1px solid black;">
-                    Goal 6 Container
-                </div>
-                <div style="width: 240px; height: 188px; border: 1px solid black;">
-                    Goal 7 Container
+            <div dnd-sortable-container [dropZones]="['boxers-zone']" [sortableData]="listBoxers" style="display: flex; flex: 1; height: auto; background: deeppink; flex-flow: row wrap; justify-content: space-between;" sd-center>
+                <div *ngFor="let item of listBoxers; let i = index" dnd-sortable [sortableIndex]="i" style="width: 240px; height: 283px; border: 1px solid black;">
+                    <h3>Container #{{i+1}}</h3>
+                    {{item}}
                 </div>
             </div>
         </div>
-
-
     </div>
 
 </md-sidenav-layout>
