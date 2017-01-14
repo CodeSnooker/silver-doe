@@ -1,7 +1,7 @@
 <md-sidenav-layout class="smd-full-height">
 
     <md-sidenav #sidenav mode="side" class="app-sidenav">
-        <sd-planner>Side Navigation</sd-planner>
+        
     </md-sidenav>
 
     <md-toolbar color="primary">
@@ -34,10 +34,40 @@
     </md-toolbar>
 
     <div class="app-content">
-        <h1>Hello {{name}}</h1>
-        <button md-raised-button class="md-raised">Button</button>
-        <button md-raised-button class="md-raised md-primary">Primary</button>
-        <button md-raised-button disabled="true" class="md-raised md-primary">Disabled</button>
+        
+        <div style="display: flex; background: lime; width: 320px; padding: 32px;">
+            <sd-planner>Planner Component</sd-planner>
+        </div>
+        <div class="goal-container" style="flex-direction: column; overflow: scroll;">
+            <div style="display: flex; flex: 1 auto; background: cyan; max-height: 75px;">
+                <input type="text" placeholder="Add new goal" />
+            </div>
+            <div style="display: flex; flex: 1; height: auto; background: deeppink; flex-flow: row wrap; justify-content: space-between;" sd-center>
+                <div style="width: 240px; height: 283px; border: 1px solid black;">
+                    Goal 1 Container
+                </div>
+                <div style="width: 240px; height: 411px; border: 1px solid black;">
+                    Goal 2 Container
+                </div>
+                <div style="width: 240px; height: 205px; border: 1px solid black;">
+                    Goal 3 Container
+                </div>
+                <div style="width: 240px; height: 306px; border: 1px solid black;">
+                    Goal 4 Container
+                </div>
+                <div style="width: 240px; height: 205px; border: 1px solid black;">
+                    Goal 5 Container
+                </div>
+                <div style="width: 240px; height: 205px; border: 1px solid black;">
+                    Goal 6 Container
+                </div>
+                <div style="width: 240px; height: 188px; border: 1px solid black;">
+                    Goal 7 Container
+                </div>
+            </div>
+        </div>
+
+
     </div>
 
 </md-sidenav-layout>

@@ -6,4 +6,9 @@ import { Component } from '@angular/core';
     templateUrl: 'planner.component.html'
 })
 
-export class PlannerComponent { }
+export class PlannerComponent {
+    
+    constructor() {
+        
+    }
+ }

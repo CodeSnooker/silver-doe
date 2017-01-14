@@ -4,6 +4,7 @@
 html, body {
   margin: 0px;
   height: 100%;
+  width: 100%;
 }
 
 h1 {
@@ -67,5 +68,35 @@ h1 {
 }
 
 .app-content {
-  padding: 16px;
+  padding: 0px;
+  width: 100%;
+  height: calc(100% - 64px);;
+  background: cyan;
+  display: flex;
+  flex-direction: row;
+  overflow: scroll;
+}
+
+.sd-card {
+  box-sizing: border-box;
+  flex-direction: row;
+  padding: 8px;
+  margin: 8px;
+  box-shadow: 0 1px 3px 0 rgba(0,0,0,.2), 0 1px 1px 0 rgba(0,0,0,.14), 0 2px 1px -1px rgba(0,0,0,.12);
+  -webkit-box-orient: vertical;
+  -webkit-flex-direction: row;
+  display: flex;
+  -webkit-box-direction: normal;
+  color: rgba(0,0,0,0.87);
+  background-color: rgb(255,255,255);
+  border-radius: 2px;
+}
+
+sd-planner {
+  display: flex; 
+  flex: 1;
+}
+
+.goal-container {
+  display: flex; flex: 1; background: orange; padding: 32px;
 }
