@@ -98,5 +98,7 @@ sd-planner {
 }
 
 .goal-container {
-  display: flex; flex: 1; background: orange; padding: 32px;
+  background: orange; 
+  padding: 32px;
+  overflow: scroll;
 }

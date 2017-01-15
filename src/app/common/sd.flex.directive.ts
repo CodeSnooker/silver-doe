@@ -6,18 +6,25 @@ import { Directive, ElementRef, Input } from '@angular/core';
 
 export class SDFlexDirective {
 
-    @Input('sd-flex') flexValue: Number;
+    @Input('sd-flex') flexValue: number;
 
     constructor (private el: ElementRef) {
-        el.nativeElement.style.display = 'inline-block';
+        el.nativeElement.style.display = 'block';
     }
 
     ngOnInit() {
         this.setWidthBasedOnFlex(this.flexValue);
     }
 
-    private setWidthBasedOnFlex(value: Number) {
+    private setWidthBasedOnFlex(value: number) {
         value = value ? value : 100;
-        this.el.nativeElement.style.width = '' + value + '%';
+        value = Math.abs(value);
+        value = Math.max(value, 1);
+        value = Math.min(value, 100);
+        //value = value / 100;
+        this.el.nativeElement.style.flexGrow = 1;
+        this.el.nativeElement.style.flexShrink = 1;
+        this.el.nativeElement.style.flexBasis = value + '%';
+        //this.el.nativeElement.style.width = '' + value + '%';
     }
 }
