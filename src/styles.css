@@ -5,12 +5,8 @@ html, body {
   margin: 0px;
   height: 100%;
   width: 100%;
-}
-
-h1 {
-  color: #369;
-  font-family: Arial, Helvetica, sans-serif;
-  font-size: 250%;
+  background-color: #4A4A4A;
+  font-family: 'Roboto', sans-serif;
 }
 
 .md-flex {
@@ -70,8 +66,7 @@ h1 {
 .app-content {
   padding: 0px;
   width: 100%;
-  height: calc(100% - 64px);;
-  background: cyan;
+  height: calc(100% - 64px);
   display: flex;
   flex-direction: row;
   overflow: scroll;
@@ -79,17 +74,17 @@ h1 {
 
 .sd-card {
   box-sizing: border-box;
-  flex-direction: row;
-  padding: 8px;
+  flex-direction: column;
   margin: 8px;
   box-shadow: 0 1px 3px 0 rgba(0,0,0,.2), 0 1px 1px 0 rgba(0,0,0,.14), 0 2px 1px -1px rgba(0,0,0,.12);
   -webkit-box-orient: vertical;
-  -webkit-flex-direction: row;
+  -webkit-flex-direction: column;
   display: flex;
   -webkit-box-direction: normal;
   color: rgba(0,0,0,0.87);
-  background-color: rgb(255,255,255);
+  background-color: #FAFAFA;
   border-radius: 2px;
+  border: 1px solid #979797;
 }
 
 sd-planner {
@@ -98,7 +93,19 @@ sd-planner {
 }
 
 .goal-container {
-  background: orange; 
   padding: 32px;
   overflow: scroll;
+}
+
+.md-sidenav-container {
+  background: transparent !important;
+}
+
+md-toolbar.md-primary {
+  background: #FFBB00 !important;
+  color: #142031 !important;
+}
+
+.app-toolbar-menu {
+  color: #142031 !important;
 }

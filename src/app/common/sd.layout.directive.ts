@@ -17,6 +17,7 @@ export class SDLayoutDirective {
     }
 
     private setLayout() {
+        console.log('this.el.nativeElement.class = ', this.el.nativeElement);
         this.el.nativeElement.style.flexDirection = this.type;
         this.el.nativeElement.style.display = 'flex';
     }

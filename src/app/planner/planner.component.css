@@ -1,0 +1,36 @@
+.sd-card > .progress {
+    height: 4px;
+    background: #7ED321;
+    width: 50%;
+}
+
+.planner-body {
+    height: calc(100% - 153px);
+    display: -ms-flexbox;
+	display: -webkit-flex;
+	display: flex;
+
+	-ms-flex-align: center;
+	-webkit-align-items: center;
+	-webkit-box-align: center;
+
+	align-items: center;
+}
+
+.planner-footer {
+    background: #D8D8D8;
+    padding: 16px;
+    text-align: center;
+    justify-content: space-between;
+    position: relative;
+    bottom: 0px;
+}
+
+.planner-footer > div {
+    text-align: center;
+}
+
+.planner-footer > div > .material-icons, .planner-footer > div > div > .material-icons {
+    color: #4A4A4A;
+    font-size: 32px;
+}

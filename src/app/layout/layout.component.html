@@ -40,19 +40,19 @@
         
 
         
-        <div style="display: flex; background: lime; min-width: 320px; padding: 32px;">
+        <div style="display: flex; min-width: 320px; padding: 32px;">
             <sd-planner>Planner Component</sd-planner>
         </div>
 
 
         <div class="goal-container" sd-flex sd-layout="column">
 
-            <div style="display: flex; flex: 1 auto; background: cyan; max-height: 75px;">
+            <div style="display: flex; flex: 1 auto; max-height: 75px;">
                 <input type="text" placeholder="Add new goal" />
             </div>
 
-            <div dnd-sortable-container [dropZones]="['boxers-zone']" [sortableData]="listBoxers" style="display: flex; flex: 1; height: auto; background: deeppink; flex-flow: row wrap; justify-content: space-between;" sd-center>
-                <div *ngFor="let item of listBoxers; let i = index" dnd-sortable [sortableIndex]="i" style="width: 240px; height: 283px; border: 1px solid black;">
+            <div dnd-sortable-container [dropZones]="['boxers-zone']" [sortableData]="listBoxers" style="display: flex; flex: 1; height: auto; flex-flow: row wrap; justify-content: space-between;" sd-center>
+                <div class="sd-card" *ngFor="let item of listBoxers; let i = index" dnd-sortable [sortableIndex]="i" style="width: 240px; height: 283px;">
                     <h3>Container #{{i+1}}</h3>
                     {{item}}
                 </div>
