@@ -31,6 +31,10 @@
 }
 
 .planner-footer > div > .material-icons, .planner-footer > div > div > .material-icons {
-    color: #4A4A4A;
+    color: #757575;
     font-size: 32px;
+}
+
+.planner-footer > div > .material-icons:hover, .planner-footer > div > div > .material-icons:hover {
+    color: #4A4A4A;
 }
