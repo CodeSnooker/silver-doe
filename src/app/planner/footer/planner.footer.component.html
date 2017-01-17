@@ -1,0 +1,27 @@
+<div class="planner-footer" sd-layout="row">
+        <div sd-layout="row">
+            <button class="app-icon-button" md-tooltip="Previous Month" mdTooltipPosition="above" (click)="onTimeSelectionEvent(-30)" >
+                <i class="material-icons">replay_30</i>
+            </button>
+            <button class="app-icon-button" md-tooltip="Previous Week" mdTooltipPosition="above"  (click)="onTimeSelectionEvent(-7)">
+                <i class="material-icons">skip_previous</i>
+            </button>
+            <button class="app-icon-button" md-tooltip="Yesterday" mdTooltipPosition="above"  (click)="onTimeSelectionEvent(-1)">
+                <i class="material-icons">navigate_before</i>
+            </button>
+        </div>
+        <button class="app-icon-button" md-tooltip="Print Planner" mdTooltipPosition="above" (click)="onPrintEvent()" >
+            <i class="material-icons">print</i>
+        </button>
+        <div sd-layout="row">
+            <button class="app-icon-button" md-tooltip="Tomorrow" mdTooltipPosition="above"  (click)="onTimeSelectionEvent(+1)" >
+                <i class="material-icons">navigate_next</i>
+            </button>
+            <button class="app-icon-button" md-tooltip="Next Week" mdTooltipPosition="above"  (click)="onTimeSelectionEvent(+7)">
+                <i class="material-icons">skip_next</i>
+            </button>
+            <button class="app-icon-button" md-tooltip="Next Month" mdTooltipPosition="above"  (click)="onTimeSelectionEvent(+30)">
+                <i class="material-icons">forward_30</i>
+            </button>
+        </div>
+</div>

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 @Component({
     moduleId: module.id,
@@ -7,6 +7,9 @@ import { Component } from '@angular/core';
     templateUrl: 'planner.header.component.html'
 })
 
+
 export class PlannerHeaderComponent {
 
+    @Input('today') today: Date;
+    @Input('selectedDate') selectedDate: Date;
 }

@@ -9,7 +9,21 @@ import { Component } from '@angular/core';
 
 export class PlannerComponent {
     
+    today: Date;
+    selectedDate: Date;
+
     constructor() {
-        
+        this.today = new Date();
+        this.selectedDate = new Date();
+    }
+
+    onTimeSelectionEvent(interval: number) {
+        console.log("#Planner Root Component: ", interval);
+
+        let newDate = this.selectedDate.getTime() + (interval * 86400000);
+        this.selectedDate = new Date(newDate);
+
+        console.log('New Date: ', this.today);
+
     }
  }

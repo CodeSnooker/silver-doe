@@ -1,36 +1,10 @@
 <div sd-flex class="sd-card">
-    <sd-planner-header>Planner Header</sd-planner-header>
+    <sd-planner-header [selectedDate]="selectedDate">Planner Header</sd-planner-header>
     <div class="progress"> </div>
     <div id="plannerBody" class="planner-body" sd-center> 
         <div sd-flex >
             Task Container
         </div>
     </div>
-    <div class="planner-footer" sd-layout="row">
-        <div sd-layout="row">
-            <div class="app-icon-button" md-tooltip="Previous Month" mdTooltipPosition="above" >
-                <i class="material-icons">replay_30</i>
-            </div>
-            <div class="app-icon-button" md-tooltip="Previous Week" mdTooltipPosition="above">
-                <i class="material-icons">skip_previous</i>
-            </div>
-            <div class="app-icon-button" md-tooltip="Yesterday" mdTooltipPosition="above">
-                <i class="material-icons">navigate_before</i>
-            </div>
-        </div>
-        <div class="app-icon-button" md-tooltip="Print Planner" mdTooltipPosition="above">
-            <i class="material-icons">print</i>
-        </div>
-        <div sd-layout="row">
-            <div class="app-icon-button" md-tooltip="Tomorrow" mdTooltipPosition="above">
-                <i class="material-icons">navigate_next</i>
-            </div>
-            <div class="app-icon-button" md-tooltip="Next Week" mdTooltipPosition="above">
-                <i class="material-icons">skip_next</i>
-            </div>
-            <div class="app-icon-button" md-tooltip="Next Month" mdTooltipPosition="above">
-                <i class="material-icons">forward_30</i>
-            </div>
-        </div>
-    </div>
+    <planner-footer (onTimeSelection)="onTimeSelectionEvent($event)" >Planner Footer</planner-footer>
 </div>

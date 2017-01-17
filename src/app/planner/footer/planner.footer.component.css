@@ -1,0 +1,23 @@
+.planner-footer {
+    background: #D8D8D8;
+    padding: 16px;
+    text-align: center;
+    justify-content: space-between;
+    position: relative;
+    bottom: 0px;
+}
+
+.planner-footer > div {
+    text-align: center;
+}
+
+.planner-footer > button > .material-icons, .planner-footer > div > button > .material-icons {
+    color: #757575;
+    font-size: 32px;
+    outline: none;
+}
+
+.planner-footer > button > .material-icons:hover, .planner-footer > div > button > .material-icons:hover {
+    color: #4A4A4A;
+    outline: none;
+}
