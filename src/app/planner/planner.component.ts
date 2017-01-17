@@ -9,6 +9,7 @@ import { Component } from '@angular/core';
 
 export class PlannerComponent {
     
+    static readonly millisecondsInADay:number = 86400000;
     today: Date;
     selectedDate: Date;
 
@@ -18,12 +19,7 @@ export class PlannerComponent {
     }
 
     onTimeSelectionEvent(interval: number) {
-        console.log("#Planner Root Component: ", interval);
-
-        let newDate = this.selectedDate.getTime() + (interval * 86400000);
+        let newDate = this.selectedDate.getTime() + (interval * PlannerComponent.millisecondsInADay);
         this.selectedDate = new Date(newDate);
-
-        console.log('New Date: ', this.today);
-
     }
  }
