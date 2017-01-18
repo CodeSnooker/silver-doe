@@ -6,16 +6,7 @@
     </div>
     -->
 
-    <div sd-layout="row" sd-layout-wrap>
-            <goal *ngFor="let item of _listGoals; let i = index" title="{{item}}">Goal</goal>
+    <div sd-layout="row" sd-layout-wrap dnd-sortable-container [dropZones]="['boxers-zone']" [sortableData]="_listGoals">
+            <goal *ngFor="let item of _listGoals; let i = index" title="{{item}}" dnd-sortable [sortableIndex]="i">Goal</goal>
     </div>
-
-    <!--
-    <div dnd-sortable-container [dropZones]="['boxers-zone']" [sortableData]="listBoxers" style="display: flex; flex: 1; height: auto; flex-flow: row wrap; justify-content: space-between;" sd-center>
-        <div class="sd-card" *ngFor="let item of listBoxers; let i = index" dnd-sortable [sortableIndex]="i" style="width: 240px; height: 283px;">
-            <h3>Container #{{i+1}}</h3>
-            <span> {{item}} </span>
-        </div>
-    </div>
-    -->
 </div>

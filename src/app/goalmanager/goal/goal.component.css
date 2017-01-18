@@ -1,6 +1,7 @@
 .goal-body {
     height: 200px;
-    width: 240px;
+    min-width: 200px;
+	
     display: -ms-flexbox;
 	display: -webkit-flex;
 	display: flex;
@@ -10,6 +11,7 @@
 	-webkit-box-align: center;
 
 	align-items: center;
+	padding: 4px;
 }
 
 .goal {
