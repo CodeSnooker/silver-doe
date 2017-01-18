@@ -1,7 +1,6 @@
-
-
-.planner-body {
-    height: calc(100% - 153px);
+.goal-body {
+    height: 200px;
+    width: 240px;
     display: -ms-flexbox;
 	display: -webkit-flex;
 	display: flex;
@@ -11,4 +10,8 @@
 	-webkit-box-align: center;
 
 	align-items: center;
+}
+
+.goal {
+	max-width: 240px;
 }

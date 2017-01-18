@@ -44,20 +44,9 @@
             <sd-planner>Planner Component</sd-planner>
         </div>
 
+        <goal-manager>Goal Manager</goal-manager>
 
-        <div class="goal-container" sd-flex sd-layout="column">
-
-            <div style="display: flex; flex: 1 auto; max-height: 75px;">
-                <input type="text" placeholder="Add new goal" />
-            </div>
-
-            <div dnd-sortable-container [dropZones]="['boxers-zone']" [sortableData]="listBoxers" style="display: flex; flex: 1; height: auto; flex-flow: row wrap; justify-content: space-between;" sd-center>
-                <div class="sd-card" *ngFor="let item of listBoxers; let i = index" dnd-sortable [sortableIndex]="i" style="width: 240px; height: 283px;">
-                    <h3>Container #{{i+1}}</h3>
-                    {{item}}
-                </div>
-            </div>
-        </div>
+    
     </div>
 
 </md-sidenav-layout>

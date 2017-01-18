@@ -109,3 +109,9 @@ md-toolbar.md-primary {
 .app-toolbar-menu {
   color: #142031 !important;
 }
+
+.sd-card > .progress {
+    height: 4px;
+    background: #7ED321;
+    width: 50%;
+}

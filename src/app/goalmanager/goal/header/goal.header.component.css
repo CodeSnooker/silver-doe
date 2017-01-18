@@ -1,0 +1,17 @@
+.goal-header {
+    border-top-left-radius: 2px;
+    border-top-right-radius: 2px;
+    max-height: 52px;
+    padding: 16px;
+    background-color: #E8E8E8;
+}
+
+.goal-header > h1 {
+    font-size: 22px;
+    margin: 0px;
+    font-weight: 300;
+    color: black !important;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+}
