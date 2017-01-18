@@ -1,10 +1,11 @@
 <div class="goal-container" sd-flex sd-layout="column">
 
-    <!--
-    <div style="display: flex; flex: 1 auto; max-height: 75px;">
-        <input type="text" placeholder="Add new goal" />
-    </div>
-    -->
+
+    <form class="sd-card input-goal-container">
+        <md-input-container sd-flex>
+            <input md-input placeholder="Add a new goal" value="">
+        </md-input-container>
+    </form>
 
     <div sd-layout="row" sd-layout-wrap dnd-sortable-container [dropZones]="['boxers-zone']" [sortableData]="_listGoals">
             <goal *ngFor="let item of _listGoals; let i = index" title="{{item}}" dnd-sortable [sortableIndex]="i">Goal</goal>
