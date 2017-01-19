@@ -1,4 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { GOALS } from './goals.mock';
+import { Goal } from './goal/goal.model';
+import { GoalService } from './goal/goal.service';
 
 @Component ({
     moduleId: module.id,
@@ -7,7 +10,21 @@ import { Component } from '@angular/core';
     styleUrls: ['goalmanager.component.css']
 })
 
-export class GoalManagerComponent {
+export class GoalManagerComponent implements OnInit {
 
-    private _listGoals: Array<string> = ['Sugar Ray Robinson Let\'s make it a very long one ','Muhammad Ali','George Foreman'];
+    //private _listGoals: Array<string> = ['Sugar Ray Robinson Let\'s make it a very long one ','Muhammad Ali','George Foreman'];
+    private _listGoals: Goal[];
+
+    constructor(private goalService:GoalService) {
+        //this._listGoals = GOALS;
+        this._listGoals = [];
+    }
+
+    getGoals() {
+        this.goalService.getGoals().then(goals => this._listGoals = goals);
+    }
+
+    ngOnInit(): void {
+        this.getGoals();
+    }
 }

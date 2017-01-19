@@ -1,9 +1,19 @@
 <div class="goal sd-card">
-    <goal-header title="{{title}}">Goal Header</goal-header>
+    <goal-header title="{{goalItem.title}}">Goal Header</goal-header>
     <div class="progress"> </div>
     <div class="goal-body" sd-center>
-        <div sd-flex>Goal Container for <i style="color:chocolate;">{{title}}</i></div>
+        <div sd-flex>Goal Container for 
+            <i style="color:chocolate;">
+            <span>Title: {{goalItem.title}}</span>
+            <span>Archived: {{goalItem.archived}}</span>
+            </i>
+        </div>
     </div>
-    <goal-footer>Goal Footer</goal-footer>
+    <goal-footer (fireCopyEvent)="onCopyEvent($event)" 
+                 (firePrintEvent)="onPrintEvent($event)"
+                 (fireDeleteEvent)="onDeleteEvent($event)"
+                 (fireArchiveEvent)="onArchiveEvent($event)">
+        Goal Footer
+    </goal-footer>
 
 </div>

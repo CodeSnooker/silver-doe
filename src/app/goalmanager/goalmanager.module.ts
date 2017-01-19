@@ -5,8 +5,12 @@ import { SDCommonModule } from './../common/common.module';
 import { MaterialModule } from '@angular/material';
 import { DndModule } from 'ng2-dnd';
 
-import { GoalModule } from './goal/goal.module';
 import { GoalManagerComponent } from './goalmanager.component';
+import { GoalModule } from './goal/goal.module';
+
+//import { DragulaModule } from 'ng2-dragula';
+
+
 
 @NgModule({
     imports: [ SDCommonModule, MaterialModule.forRoot(), BrowserModule, GoalModule, DndModule.forRoot() ],

@@ -115,3 +115,8 @@ md-toolbar.md-primary {
     background: #7ED321;
     width: 50%;
 }
+
+goal-manager {
+  overflow: scroll;
+  justify-content: space-between;
+}
