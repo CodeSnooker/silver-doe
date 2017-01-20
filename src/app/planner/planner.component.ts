@@ -22,4 +22,8 @@ export class PlannerComponent {
         let newDate = this.selectedDate.getTime() + (interval * PlannerComponent.millisecondsInADay);
         this.selectedDate = new Date(newDate);
     }
+
+    onTapped(event: any) {
+        event.stopPropagation();
+    }
  }

@@ -58,11 +58,6 @@ html, body {
   text-decoration: none;
 }
 
-.app-toolbar-menu {
-  padding: 0 14px 0 14px;
-  color: white;
-}
-
 .app-content {
   padding: 0px;
   width: 100%;
@@ -71,6 +66,20 @@ html, body {
   flex-direction: row;
   overflow: scroll;
 }
+
+
+.planner-container {
+  display: flex; 
+  min-width: 320px; 
+  padding: 32px;
+}
+
+sd-planner {
+  display: flex; 
+  flex: 1;
+}
+
+
 
 .sd-card {
   box-sizing: border-box;
@@ -87,28 +96,9 @@ html, body {
   border: 1px solid #979797;
 }
 
-sd-planner {
-  display: flex; 
-  flex: 1;
-}
 
-.goal-container {
-  padding: 32px;
-  overflow: scroll;
-}
 
-.md-sidenav-container {
-  background: transparent !important;
-}
 
-md-toolbar.md-primary {
-  background: #FFBB00 !important;
-  color: #142031 !important;
-}
-
-.app-toolbar-menu {
-  color: #142031 !important;
-}
 
 .sd-card > .progress {
     height: 4px;
@@ -116,7 +106,3 @@ md-toolbar.md-primary {
     width: 50%;
 }
 
-goal-manager {
-  overflow: scroll;
-  justify-content: space-between;
-}

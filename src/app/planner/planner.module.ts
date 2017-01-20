@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, ModuleWithProviders } from '@angular/core';
 
 import { PlannerComponent } from './planner.component';
 import { PlannerHeaderComponent } from './header/planner.header.component';
@@ -12,4 +12,12 @@ import { MaterialModule } from '@angular/material';
     exports: [ PlannerComponent ]
 })
 
-export class PlannerModule { }
+export class PlannerModule {
+
+    static forRoot(): ModuleWithProviders {
+        return {
+            ngModule: PlannerModule
+        };
+    }
+
+ }

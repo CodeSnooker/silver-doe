@@ -1,4 +1,4 @@
-<div sd-flex class="sd-card">
+<div sd-flex class="sd-card" (click)="onTapped($event)">
     <sd-planner-header [selectedDate]="selectedDate">Planner Header</sd-planner-header>
     <div class="progress"> </div>
     <div id="plannerBody" class="planner-body" sd-center> 

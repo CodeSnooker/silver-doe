@@ -1,0 +1,33 @@
+
+
+goal-manager {
+  overflow: scroll;
+  justify-content: space-between;
+}
+
+.goal-container {
+  padding: 32px;
+  overflow: scroll;
+}
+
+.md-sidenav-container {
+  background: transparent !important;
+}
+
+md-toolbar.md-primary {
+  background: #FFBB00 !important;
+  color: #142031 !important;
+}
+
+.app-toolbar-menu {
+  color: #142031 !important;
+}
+
+.app-toolbar-menu {
+  padding: 0 14px 0 14px;
+  color: white;
+}
+
+goal-manager {
+    padding: 32px;
+}
