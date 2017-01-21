@@ -19,16 +19,13 @@ export class EditorComponent implements OnInit {
     private inCompletedTasks:Task[];
 
     private showCompetedTasks = false;
+    private lamda = 'material-icons fadded anim zeroDeg';
 
     constructor(private taskService:TaskService) {}
 
     itemClicked(event:any, taskItem: Task) {
-        //console.log('Item clicked');
-        //alert('Item clicked')
-
-        console.log(event.checked);
+        
         taskItem.completed = event.checked;
-
         this.buildTasks(this.tasks);
     }
 
@@ -96,27 +93,11 @@ export class EditorComponent implements OnInit {
 
     toggleShowCompletedTasks(event:any) {
         this.showCompetedTasks = !this.showCompetedTasks;
+        this.lamda  = 'material-icons fadded anim zeroDeg'
 
-        var target = event.target;
-        var buttons = target.getElementsByTagName('button');
-        var targetButton: any, targetIcon: any;
-        if (buttons) {
-            targetButton = buttons[0];
-            var icons = targetButton.getElementsByTagName('i');
-            if (icons) {
-                targetIcon = icons[0];
-                if (this.showCompetedTasks) {
-                    targetIcon.style.transform = 'rotateZ(0deg)';
-                }
-                else {
-                    targetIcon.style.transform = 'rotateZ(-90deg)';
-                    
-                }
-            }
+        if (this.showCompetedTasks) {
+            this.lamda  = 'material-icons fadded anim ninetyDeg'
         }
-
-        
-        //console.log('Toggle Completed Tasks: ', event.target);
     }
 
     expandCompletedTasks() {

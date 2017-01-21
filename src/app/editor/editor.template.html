@@ -41,12 +41,12 @@
                 </div>
 
                 <!-- Completed Tasks -->
-                <div sd-layout="row" class="completedTasks fadded" (click)="toggleShowCompletedTasks($event)" sd-layout-wrap>
+                <div sd-layout="row" class="completedTasks fadded" (click)="toggleShowCompletedTasks($event)" sd-layout-wrap *ngIf="completedTasks?.length">
                     <button class="app-icon-button" style="padding-left:14px; pointer-events: none;">
-                            <i class="material-icons fadded anim" style="transform:rotateZ(-90deg);">keyboard_arrow_down</i>
+                            <i id="expand_task_icon_1" class="{{lamda}}">keyboard_arrow_right</i>
                     </button>
                     <div style="padding-left:10px; padding-top:2px; pointer-events: none;" disabled>
-                        4 completed tasks
+                        {{completedTasks?.length}} completed tasks
                     </div>
                 </div>
 

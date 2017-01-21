@@ -114,6 +114,7 @@ input.new-task {
   font-weight: 400;
   font-size: 16px;
   flex: 1 auto;
+  background: transparent;
 }
 
 input::-webkit-input-placeholder { /* Chrome/Opera/Safari */
@@ -131,4 +132,12 @@ input.new-task:-ms-input-placeholder { /* IE 10+ */
 input.new-task:-moz-placeholder { /* Firefox 18- */
   font-weight: 400;
   font-size: 16px;
+}
+
+.ninetyDeg {
+  transform: rotateZ(90deg)
+}
+
+.zeroDeg {
+  transform: rotateZ(0deg)
 }
