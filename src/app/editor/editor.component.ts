@@ -32,6 +32,36 @@ export class EditorComponent implements OnInit {
         this.buildTasks(this.tasks);
     }
 
+    onHover(event: any, index: number, completed:boolean) {
+        
+        let type:string = 'pending_';
+
+        if (completed) {
+            type = 'completed_';
+        }else {
+            var moveElement = document.getElementById(type + 'move_' +  index);
+            moveElement.style.opacity = '1.0';
+        }
+
+        var deleteElement = document.getElementById(type + 'delete_' +  index);        
+        deleteElement.style.opacity = '1.0';
+    }
+
+    onMouseOut(event: any, index: number, completed:boolean) {
+        let type:string = 'pending_';
+
+        if (completed) {
+            type = 'completed_';
+        }
+        else {
+            var moveElement = document.getElementById(type + 'move_' +  index);
+            moveElement.style.opacity = '0.0';
+        }
+
+        var deleteElement = document.getElementById(type + 'delete_' +  index);
+        deleteElement.style.opacity = '0.0';
+    }
+
     getCompletedTasks() {
         return this.tasks.filter(task => task.completed === true);
      } 
@@ -86,7 +116,7 @@ export class EditorComponent implements OnInit {
         }
 
         
-        console.log('Toggle Completed Tasks: ', event.target);
+        //console.log('Toggle Completed Tasks: ', event.target);
     }
 
     expandCompletedTasks() {

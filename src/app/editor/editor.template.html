@@ -22,12 +22,12 @@
             <div sd-layout="column" style="overflow: scroll;">
 
                 <!-- Pending Tasks -->
-                <div sd-layout="row" class="task" *ngFor="let taskItem of inCompletedTasks; let i = index">
-                    <button class="app-icon-button">
-                        <i class="material-icons fadded">more_vert</i>
+                <div sd-layout="row" class="task" *ngFor="let taskItem of inCompletedTasks; let i = index" (mouseover)="onHover($event, i, false)" (mouseout)="onMouseOut($event, i, false)">
+                    <button id="pending_move_{{i}}" class="app-icon-button invisible anim">
+                        <i class="material-icons">more_vert</i>
                     </button>
                     <md-checkbox sd-flex class="task-checkbox" color="warn" [checked]="taskItem.completed" (change)="itemClicked($event, taskItem)">{{taskItem.title}}</md-checkbox>
-                    <button class="app-icon-button cancel-task">
+                    <button id="pending_delete_{{i}}" class="app-icon-button cancel-task invisible anim">
                             <i class="material-icons">cancel</i>
                     </button>
                 </div>
@@ -43,7 +43,7 @@
                 <!-- Completed Tasks -->
                 <div sd-layout="row" class="completedTasks fadded" (click)="toggleShowCompletedTasks($event)" sd-layout-wrap>
                     <button class="app-icon-button" style="padding-left:14px; pointer-events: none;">
-                            <i class="material-icons fadded" style="transform:rotateZ(-90deg); transition:all 300ms;">keyboard_arrow_down</i>
+                            <i class="material-icons fadded anim" style="transform:rotateZ(-90deg);">keyboard_arrow_down</i>
                     </button>
                     <div style="padding-left:10px; padding-top:2px; pointer-events: none;" disabled>
                         4 completed tasks
@@ -51,12 +51,12 @@
                 </div>
 
                 <div sd-flex *ngIf="showCompetedTasks">
-                    <div sd-layout="row" class="task completed" *ngFor="let taskItem of completedTasks; let i = index">
-                        <button class="app-icon-button">
+                    <div sd-layout="row" class="task completed" *ngFor="let taskItem of completedTasks; let i = index" (mouseover)="onHover($event, i, true)" (mouseout)="onMouseOut($event, i, true)">
+                        <button class="app-icon-button invisible" >
                             <i class="material-icons">more_vert</i>
                         </button>
-                        <md-checkbox sd-flex class="task-checkbox" color="warn" [checked]="taskItem.completed" (change)="itemClicked($event, taskItem)">{{taskItem.completed}} | {{taskItem.title}}</md-checkbox>
-                        <button class="app-icon-button cancel-task">
+                        <md-checkbox sd-flex class="task-checkbox" color="warn" [checked]="taskItem.completed" (change)="itemClicked($event, taskItem)">{{taskItem.title}}</md-checkbox>
+                        <button id="completed_delete_{{i}}" class="app-icon-button cancel-task invisible anim">
                             <i class="material-icons">cancel</i>
                         </button>
                     </div>
