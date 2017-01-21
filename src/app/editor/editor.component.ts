@@ -108,11 +108,13 @@ export class EditorComponent implements OnInit {
         }
     }
 
-    expandCompletedTasks() {
-
-    }
-
-    collapseCompletedTasks() {
-
+    deleteTask(taskItem: Task) {
+        if (taskItem) {
+            let index:number = this.tasks.indexOf(taskItem);
+            if (index > -1) {
+                this.tasks.splice(index, 1);
+                this.buildTasks(this.tasks);
+            }
+        }
     }
 }
