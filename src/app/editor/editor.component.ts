@@ -17,6 +17,7 @@ export class EditorComponent implements OnInit {
     private tasks:Task[];
     private completedTasks:Task[];
     private inCompletedTasks:Task[];
+    private goalProgress:number = 0;
 
     private showCompetedTasks = false;
     private lamda = 'material-icons fadded anim zeroDeg';
@@ -79,6 +80,17 @@ export class EditorComponent implements OnInit {
          this.tasks = tasks; 
          this.completedTasks = this.getCompletedTasks();
          this.inCompletedTasks = this.getInCompletedTasks();
+
+         let totalTasks = this.tasks.length;
+         let finished = this.completedTasks.length;
+         let pending = this.inCompletedTasks.length;
+
+         if (totalTasks > 0) {
+            this.goalProgress = (totalTasks - pending) * 100 / totalTasks;
+         }
+         else {
+             this.goalProgress = 0;
+         }
      }
 
     ngOnInit() {
