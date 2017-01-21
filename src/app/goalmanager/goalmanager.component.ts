@@ -12,7 +12,6 @@ import { GoalService } from './goal/goal.service';
 
 export class GoalManagerComponent implements OnInit {
 
-    //private _listGoals: Array<string> = ['Sugar Ray Robinson Let\'s make it a very long one ','Muhammad Ali','George Foreman'];
     private _listGoals: Goal[];
 
     constructor(private goalService:GoalService) {

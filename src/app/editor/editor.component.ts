@@ -1,5 +1,8 @@
-import { Component } from '@angular/core';
-
+import { Component, OnInit } from '@angular/core';
+import { GoalService } from './../goalmanager/goal/goal.service';
+import { TaskService } from './../tasks/task/task.service';
+import { Task } from './../tasks/task/task.model';
+import { Goal } from './../goalmanager/goal/goal.model';
 
 
 @Component({
@@ -9,9 +12,48 @@ import { Component } from '@angular/core';
     styleUrls: ['editor.styles.css']
 })
 
-export class EditorComponent { 
+export class EditorComponent implements OnInit { 
+
+    private tasks:Task[];
+    private completedTasks:Task[];
+    private inCompletedTasks:Task[];
 
     private showCompetedTasks = false;
+
+    constructor(private taskService:TaskService) {}
+
+    itemClicked(event:any, taskItem: Task) {
+        //console.log('Item clicked');
+        //alert('Item clicked')
+
+        console.log(event.checked);
+        taskItem.completed = event.checked;
+
+        this.buildTasks(this.tasks);
+    }
+
+    getCompletedTasks() {
+        return this.tasks.filter(task => task.completed === true);
+     } 
+
+     getInCompletedTasks() {
+        return this.tasks.filter(task => task.completed === false);
+     }
+
+     buildTasks(tasks:Task[]) {
+         this.tasks = tasks; 
+         this.completedTasks = this.getCompletedTasks();
+         this.inCompletedTasks = this.getInCompletedTasks();
+     }
+
+    ngOnInit() {
+        this.getTasks()
+    }
+
+    getTasks() {
+        this.taskService.getTasks('goal1')
+            .then(tasks => this.buildTasks(tasks));
+    }
 
     onTapped(event: any) {
         console.log('Hide Class');

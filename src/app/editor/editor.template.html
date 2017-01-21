@@ -4,6 +4,8 @@
     </div>
     <div style="width: 100%; padding: 32px;">
         <div class="sd-card goal-editor" (click)="onGoalEditorTapped($event)">
+
+            <!-- Header -->
             <div class="editor-header" sd-layout="row" style="flex-direction: row-reverse;">
                 <input type="text" value="" placeholder="What is your goal for today ?" />
                 <div>
@@ -12,41 +14,19 @@
                 </md-chip-list>
                 </div>
             </div>
-            <div class="progress"> </div>
-            <div sd-layout="column" style="overflow: scroll;">
-                <div sd-layout="row" class="task">
-                    <button class="app-icon-button">
-                            <i class="material-icons fadded">more_vert</i>
-                    </button>
-                    <md-checkbox sd-flex class="task-checkbox">This is normal task #1 text</md-checkbox>
-                    <button class="app-icon-button cancel-task">
-                            <i class="material-icons">cancel</i>
-                    </button>
-                </div>
-                <div sd-layout="row" class="task even">
-                    <button class="app-icon-button">
-                            <i class="material-icons">more_vert</i>
-                    </button>
-                    <md-checkbox sd-flex class="task-checkbox">This is normal task #2 text with a multiline text with no more ellipses. I think we need to add more text to test the multiline feature. What do you think?</md-checkbox>
-                    <button class="app-icon-button cancel-task">
-                            <i class="material-icons">cancel</i>
-                    </button>
-                </div>
-                <div sd-layout="row" class="task">
-                    <button class="app-icon-button">
-                            <i class="material-icons">more_vert</i>
-                    </button>
-                    <md-checkbox sd-flex class="task-checkbox">This is normal task #3 text</md-checkbox>
-                    <button class="app-icon-button cancel-task">
-                            <i class="material-icons">cancel</i>
-                    </button>
-                </div>
 
-                <div sd-layout="row" class="task even">
+            <!-- Progress bar -->
+            <div class="progress"> </div>
+            
+            <!-- Tasks -->
+            <div sd-layout="column" style="overflow: scroll;">
+
+                <!-- Pending Tasks -->
+                <div sd-layout="row" class="task" *ngFor="let taskItem of inCompletedTasks; let i = index">
                     <button class="app-icon-button">
-                            <i class="material-icons">more_vert</i>
+                        <i class="material-icons fadded">more_vert</i>
                     </button>
-                    <md-checkbox sd-flex class="task-checkbox">This is progress bases task #4 and may have multiline text</md-checkbox>
+                    <md-checkbox sd-flex class="task-checkbox" color="warn" [checked]="taskItem.completed" (change)="itemClicked($event, taskItem)">{{taskItem.title}}</md-checkbox>
                     <button class="app-icon-button cancel-task">
                             <i class="material-icons">cancel</i>
                     </button>
@@ -71,40 +51,20 @@
                 </div>
 
                 <div sd-flex *ngIf="showCompetedTasks">
-                    <div sd-layout="row" class="task completed">
-                    <button class="app-icon-button">
+                    <div sd-layout="row" class="task completed" *ngFor="let taskItem of completedTasks; let i = index">
+                        <button class="app-icon-button">
                             <i class="material-icons">more_vert</i>
-                    </button>
-                    <md-checkbox sd-flex checked="true" class="task-checkbox">This is normal task #5 text</md-checkbox>
-                    <button class="app-icon-button cancel-task">
+                        </button>
+                        <md-checkbox sd-flex class="task-checkbox" color="warn" [checked]="taskItem.completed" (change)="itemClicked($event, taskItem)">{{taskItem.completed}} | {{taskItem.title}}</md-checkbox>
+                        <button class="app-icon-button cancel-task">
                             <i class="material-icons">cancel</i>
-                    </button>
+                        </button>
+                    </div>
                 </div>
-                <div sd-layout="row" class="task even completed">
-                    <button class="app-icon-button">
-                            <i class="material-icons">more_vert</i>
-                    </button>
-                    <md-checkbox checked="true" sd-flex class="task-checkbox">This is normal task #6 text</md-checkbox>
-                    <button class="app-icon-button cancel-task">
-                            <i class="material-icons">cancel</i>
-                    </button>
-                </div>
-                <div sd-layout="row" class="task completed">
-                    <button class="app-icon-button">
-                            <i class="material-icons">more_vert</i>
-                    </button>
-                    <md-checkbox sd-flex checked="true" class="task-checkbox">This is normal task #7 text</md-checkbox>
-                    <button class="app-icon-button cancel-task">
-                            <i class="material-icons">cancel</i>
-                    </button>
-                </div>
-                </div>
-                
-                
-                
-                
-                
+
+
             </div>
+
 
             <!-- Footer -->
             <div class="goal-footer" sd-layout="row">
