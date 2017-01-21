@@ -27,7 +27,7 @@ export class EditorComponent {
 
         var target = event.target;
         var buttons = target.getElementsByTagName('button');
-        var targetButton, targetIcon;
+        var targetButton: any, targetIcon: any;
         if (buttons) {
             targetButton = buttons[0];
             var icons = targetButton.getElementsByTagName('i');
