@@ -51,7 +51,7 @@
                 </div>
 
                 <div sd-flex *ngIf="showCompetedTasks">
-                    <div sd-layout="row" class="task completed" *ngFor="let taskItem of completedTasks; let i = index" (mouseover)="onHover($event, i, true)" (mouseout)="onMouseOut($event, i, true)">
+                    <div sd-layout="row" class="task completed" *ngFor="let taskItem of completedTasks; let i = index" (mouseover)="onHover($event, i, true)" (mouseout)="onMouseOut($event, i, true)" md-tooltip="Finished On: {{taskItem.completedAt | sddate}}" mdTooltipPosition="above">
                         <button class="app-icon-button invisible" >
                             <i class="material-icons">more_vert</i>
                         </button>

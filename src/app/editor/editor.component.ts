@@ -26,6 +26,14 @@ export class EditorComponent implements OnInit {
     itemClicked(event:any, taskItem: Task) {
         
         taskItem.completed = event.checked;
+
+        if (taskItem.completed) {
+            taskItem.completedAt = new Date();
+        }
+        else {
+            taskItem.completed = undefined;
+        }
+
         this.buildTasks(this.tasks);
     }
 
