@@ -37,7 +37,7 @@
                     <button class="app-icon-button" style="padding-left:28px; padding-right: 6px; pointer-events: none;">
                             <i class="material-icons fadded">add</i>
                     </button>
-                    <input class="new-task" type="text" value="" placeholder="Add new task" />
+                    <input class="new-task" type="text" value="" placeholder="Add new task" (keyup.enter)="addTask($event)" />
                 </div>
 
                 <!-- Completed Tasks -->

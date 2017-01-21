@@ -117,4 +117,32 @@ export class EditorComponent implements OnInit {
             }
         }
     }
+
+    addTask(event: any) {
+        console.log('Enter Key Pressed: ', event.target);
+
+        let taskTitle:string = event.target.value;
+        taskTitle = taskTitle.trim();
+
+        if (taskTitle.length > 0) {
+            
+            // Let's add new task in the list
+            let taskItem: Task = {
+                                    id: 'task_' + Math.random(), 
+                                    title: taskTitle, 
+                                    createdAt: new Date(), 
+                                    updatedAt: new Date(),
+                                    completedAt: undefined,
+                                    completed: false,
+                                    dueDate: undefined,
+                                    percent: 0,
+                                    showPercentage: false
+                                }
+            
+            this.tasks.push(taskItem);
+            this.buildTasks(this.tasks);
+        }
+        
+        event.target.value = "";
+    }   
 }
