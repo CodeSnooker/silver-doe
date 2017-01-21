@@ -31,7 +31,7 @@ export class EditorComponent implements OnInit {
             taskItem.completedAt = new Date();
         }
         else {
-            taskItem.completed = undefined;
+            taskItem.completedAt = undefined;
         }
 
         this.buildTasks(this.tasks);

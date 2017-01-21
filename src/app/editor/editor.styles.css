@@ -115,6 +115,7 @@ input.new-task {
   font-size: 16px;
   flex: 1 auto;
   background: transparent;
+  padding-right: 16px;
 }
 
 input::-webkit-input-placeholder { /* Chrome/Opera/Safari */
