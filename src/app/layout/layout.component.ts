@@ -10,5 +10,14 @@ import { Component } from '@angular/core';
 export class LayoutComponent { 
 
     
+    triggerHideOverlayEvent() {
+        console.log('#triggerHideOverlayEvent called');
+        var editorLayout = document.getElementById('goalEditor');
+        editorLayout.style.opacity = '0';
+        editorLayout.style.zIndex = '-100';
+        setTimeout(function() {
+            editorLayout.hidden = true;
+        }, 600);
+    }
 
  }

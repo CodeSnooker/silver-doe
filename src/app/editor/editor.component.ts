@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, EventEmitter, Input, Output } from '@angular/core';
 import { GoalService } from './../goalmanager/goal/goal.service';
 import { TaskService } from './../tasks/task/task.service';
 import { Task } from './../tasks/task/task.model';
@@ -13,6 +13,8 @@ import { Goal } from './../goalmanager/goal/goal.model';
 })
 
 export class EditorComponent implements OnInit { 
+
+    @Output() overlayTappedEventEmiiter = new EventEmitter<void> ();
 
     private tasks:Task[];
     private completedTasks:Task[];
@@ -105,6 +107,8 @@ export class EditorComponent implements OnInit {
     onTapped(event: any) {
         console.log('Hide Class');
         event.stopPropagation();
+
+        this.overlayTappedEventEmiiter.emit();
     }
 
     onGoalEditorTapped(event: any) {
