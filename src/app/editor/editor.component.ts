@@ -16,6 +16,7 @@ export class EditorComponent implements OnInit {
 
     @Output() overlayTappedEventEmiiter = new EventEmitter<void> ();
 
+    private goalTitle = 'Goal #1';
     private tasks:Task[];
     private completedTasks:Task[];
     private inCompletedTasks:Task[];
@@ -160,5 +161,9 @@ export class EditorComponent implements OnInit {
         }
         
         event.target.value = "";
-    }   
+    }
+
+    setGoalTitle(event: any) {
+        this.goalTitle = event.target.value;   
+    }
 }

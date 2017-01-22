@@ -7,7 +7,7 @@
 
             <!-- Header -->
             <div class="editor-header" sd-layout="row" style="flex-direction: row-reverse;">
-                <input type="text" value="" placeholder="What is your goal for today ?" />
+                <input type="text" [value]="goalTitle" placeholder="What is your goal for today ?"   />
                 <div>
                 <md-chip-list sd-flex>
                     <md-chip selected="true">Due By 10-Feb-2017</md-chip>
@@ -27,7 +27,7 @@
                         <i class="material-icons">more_vert</i>
                     </button>
                     <md-checkbox sd-flex class="task-checkbox" color="warn" [checked]="taskItem.completed" (change)="itemClicked($event, taskItem)">{{taskItem.title}}</md-checkbox>
-                    <button id="pending_delete_{{i}}" class="app-icon-button cancel-task invisible anim" (click)="deleteTask(taskItem)">
+                    <button id="pending_delete_{{i}}" class="app-icon-button cancel-task invisible anim" (click)="deleteTask(taskItem)" md-tooltip="Delete" mdTooltipPosition="above">
                             <i class="material-icons">cancel</i>
                     </button>
                 </div>
@@ -51,12 +51,12 @@
                 </div>
 
                 <div sd-flex *ngIf="showCompetedTasks">
-                    <div sd-layout="row" class="task completed" *ngFor="let taskItem of completedTasks; let i = index" (mouseover)="onHover($event, i, true)" (mouseout)="onMouseOut($event, i, true)" md-tooltip="Finished On: {{taskItem.completedAt | sddate}}" mdTooltipPosition="above">
+                    <div sd-layout="row" class="task completed" *ngFor="let taskItem of completedTasks; let i = index" (mouseover)="onHover($event, i, true)" (mouseout)="onMouseOut($event, i, true)">
                         <button class="app-icon-button invisible" >
                             <i class="material-icons">more_vert</i>
                         </button>
-                        <md-checkbox sd-flex class="task-checkbox" color="warn" [checked]="taskItem.completed" (change)="itemClicked($event, taskItem)">{{taskItem.title}}</md-checkbox>
-                        <button id="completed_delete_{{i}}" class="app-icon-button cancel-task invisible anim" (click)="deleteTask(taskItem)">
+                        <md-checkbox sd-flex class="task-checkbox" color="warn" [checked]="taskItem.completed" (change)="itemClicked($event, taskItem)" md-tooltip="Finished On: {{taskItem.completedAt | sddate}}" mdTooltipPosition="above">{{taskItem.title}}</md-checkbox>
+                        <button id="completed_delete_{{i}}" class="app-icon-button cancel-task invisible anim" (click)="deleteTask(taskItem)" md-tooltip="Delete" mdTooltipPosition="below">
                             <i class="material-icons">cancel</i>
                         </button>
                     </div>
