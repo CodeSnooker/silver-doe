@@ -66,7 +66,7 @@ export class EditorComponent implements OnInit, OnChanges {
      reBuildTasks() {
 
          if (this.goal) {
-                this.goal.updateProgress();
+            this.goal.updateProgress();
             this.completedTasks = this.goal.getCompletedTasks();
             this.inCompletedTasks = this.goal.getInCompletedTasks();
          }
@@ -74,7 +74,7 @@ export class EditorComponent implements OnInit, OnChanges {
 
 
     ngOnInit() {
-        //this.getTasks()
+        this.reBuildTasks();
         
     }
 

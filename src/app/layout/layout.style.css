@@ -31,3 +31,7 @@ md-toolbar.md-primary {
 goal-manager {
     padding: 32px;
 }
+
+editor-layout {
+  opacity : 0;
+}
