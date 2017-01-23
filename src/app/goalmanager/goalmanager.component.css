@@ -5,3 +5,18 @@
 .goals {
     justify-content: space-between;
 }
+
+.addGoal {
+  border: 0px;
+  height: auto;
+  padding: 16px;
+  background: white;
+  font-size: 24px;
+  font-weight: 300;
+  outline: 0px;
+  flex: 1 auto;
+  text-overflow: ellipsis;
+  margin-right: 8px;
+  margin-left: 8px;
+  margin-bottom: 16px;
+}

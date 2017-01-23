@@ -40,10 +40,10 @@
                 <sd-planner>Planner Component</sd-planner>
         </div>
         
-        <goal-manager>Goal Manager</goal-manager>
+        <goal-manager (goalTappedEmitter)="triggetShowOverlayEvent($event)" >Goal Manager</goal-manager>
         
     </div>
 
-    <editor-layout id="goalEditor" class="anim-slow" (overlayTappedEventEmiiter)="triggerHideOverlayEvent($event)">Editor-Layout</editor-layout>
+    <editor-layout id="goalEditor" class="anim-slow" [goal]="goal" (overlayTappedEventEmiiter)="triggerHideOverlayEvent($event)">Editor-Layout</editor-layout>
 
 </md-sidenav-layout>

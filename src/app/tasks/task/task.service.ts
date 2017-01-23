@@ -1,4 +1,5 @@
 import { Task } from './task.model';
+import { TaskCollection } from './task.collection.model';
 import { TASKS } from './task.mock';
 import { Injectable } from '@angular/core';
 
@@ -37,8 +38,8 @@ export class TaskService {
         }
     }
 
-    getTasks(goalID:string): Promise<Task[]> {
-        return Promise.resolve(TASKS[goalID]);
+    getTasks(goalID:string): Promise<TaskCollection> {
+        return Promise.resolve(TASKS.getTasksForGoal(goalID));
     }
 }
 

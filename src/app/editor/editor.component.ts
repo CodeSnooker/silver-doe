@@ -1,7 +1,8 @@
-import { Component, OnInit, EventEmitter, Input, Output } from '@angular/core';
+import { Component, OnInit, OnChanges, EventEmitter, Input, Output, NgZone } from '@angular/core';
 import { GoalService } from './../goalmanager/goal/goal.service';
 import { TaskService } from './../tasks/task/task.service';
 import { Task } from './../tasks/task/task.model';
+import { TaskCollection } from './../tasks/task/task.collection.model';
 import { Goal } from './../goalmanager/goal/goal.model';
 
 
@@ -12,33 +13,23 @@ import { Goal } from './../goalmanager/goal/goal.model';
     styleUrls: ['editor.styles.css']
 })
 
-export class EditorComponent implements OnInit { 
+export class EditorComponent implements OnInit, OnChanges { 
 
     @Output() overlayTappedEventEmiiter = new EventEmitter<void> ();
-
-    private goalTitle = 'Goal #1';
-    private tasks:Task[];
-    private completedTasks:Task[];
-    private inCompletedTasks:Task[];
-    private goalProgress:number = 0;
+    @Input('goal') goal: Goal;
+    
+    private completedTasks:TaskCollection;
+    private inCompletedTasks:TaskCollection;
 
     private showCompetedTasks = false;
     private lamda = 'material-icons fadded anim zeroDeg';
 
-    constructor(private taskService:TaskService) {}
+    constructor(private taskService:TaskService, private zone:NgZone) {}
 
     itemClicked(event:any, taskItem: Task) {
         
         taskItem.completed = event.checked;
-
-        if (taskItem.completed) {
-            taskItem.completedAt = new Date();
-        }
-        else {
-            taskItem.completedAt = undefined;
-        }
-
-        this.buildTasks(this.tasks);
+        this.reBuildTasks();
     }
 
     onHover(event: any, index: number, completed:boolean) {
@@ -71,38 +62,31 @@ export class EditorComponent implements OnInit {
         deleteElement.style.opacity = '0.0';
     }
 
-    getCompletedTasks() {
-        return this.tasks.filter(task => task.completed === true);
-     } 
+     
+     reBuildTasks() {
 
-     getInCompletedTasks() {
-        return this.tasks.filter(task => task.completed === false);
-     }
-
-     buildTasks(tasks:Task[]) {
-         this.tasks = tasks; 
-         this.completedTasks = this.getCompletedTasks();
-         this.inCompletedTasks = this.getInCompletedTasks();
-
-         let totalTasks = this.tasks.length;
-         let finished = this.completedTasks.length;
-         let pending = this.inCompletedTasks.length;
-
-         if (totalTasks > 0) {
-            this.goalProgress = (totalTasks - pending) * 100 / totalTasks;
-         }
-         else {
-             this.goalProgress = 0;
+         if (this.goal) {
+                this.goal.updateProgress();
+            this.completedTasks = this.goal.getCompletedTasks();
+            this.inCompletedTasks = this.goal.getInCompletedTasks();
          }
      }
+
 
     ngOnInit() {
-        this.getTasks()
+        //this.getTasks()
+        
+    }
+
+    ngOnChanges() {
+        this.reBuildTasks();
     }
 
     getTasks() {
+        /*
         this.taskService.getTasks('goal1')
             .then(tasks => this.buildTasks(tasks));
+            */
     }
 
     onTapped(event: any) {
@@ -126,12 +110,10 @@ export class EditorComponent implements OnInit {
     }
 
     deleteTask(taskItem: Task) {
-        if (taskItem) {
-            let index:number = this.tasks.indexOf(taskItem);
-            if (index > -1) {
-                this.tasks.splice(index, 1);
-                this.buildTasks(this.tasks);
-            }
+        let removed:boolean = this.goal.tasks.remove(taskItem);
+        if (removed) {
+            // Rebuild the tasks
+            this.reBuildTasks();
         }
     }
 
@@ -144,26 +126,11 @@ export class EditorComponent implements OnInit {
         if (taskTitle.length > 0) {
             
             // Let's add new task in the list
-            let taskItem: Task = {
-                                    id: 'task_' + Math.random(), 
-                                    title: taskTitle, 
-                                    createdAt: new Date(), 
-                                    updatedAt: new Date(),
-                                    completedAt: undefined,
-                                    completed: false,
-                                    dueDate: undefined,
-                                    percent: 0,
-                                    showPercentage: false
-                                }
-            
-            this.tasks.push(taskItem);
-            this.buildTasks(this.tasks);
+            let taskItem: Task = new Task({title:taskTitle, belongsTo:this.goal.id});
+            this.goal.tasks.push(taskItem);
+            this.reBuildTasks();
         }
         
         event.target.value = "";
-    }
-
-    setGoalTitle(event: any) {
-        this.goalTitle = event.target.value;   
     }
 }
