@@ -1,5 +1,6 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnChanges } from '@angular/core';
 import { Goal } from './goal.model';
+import { TaskCollection } from './../../tasks/task/task.collection.model';
 
 @Component({
     moduleId: module.id,
@@ -8,9 +9,23 @@ import { Goal } from './goal.model';
     styleUrls: ['goal.component.css']
 })
 
-export class GoalComponent {
+export class GoalComponent implements OnChanges {
     @Input ('title') title: string;
     @Input ('goalItem') goalItem: Goal;
+
+    private completedTasks:TaskCollection;
+    private inCompletedTasks:TaskCollection;
+
+    private reComputeTasks() {
+        if (this.goalItem) {
+            this.completedTasks = this.goalItem.getCompletedTasks();
+            this.inCompletedTasks = this.goalItem.getInCompletedTasks();
+        }
+    }
+
+    ngOnChanges() {
+        this.reComputeTasks();
+    }
 
     onCopyEvent() {
         console.log('#Goal Compoent: copy');

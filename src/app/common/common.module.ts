@@ -15,11 +15,12 @@ import { SDLayoutAlignRightDirective } from './sd.align.right';
 // Pipes
 import { SDDatePipe } from './sd.date.pipe';
 import { SDFilterPipe} from './sd.filter.pipe';
+import { SDTruncatePipe } from './sd.truncate.pipe';
 
 @NgModule({
     imports: [MaterialModule.forRoot(), BrowserModule, CommonModule, FormsModule],
-    declarations: [ SDFlexDirective, SDTextAlignCenterDirective, SDLayoutDirective, SDLayoutWrapDirective, SDDatePipe, SDLayoutAlignRightDirective, SDFilterPipe],
-    exports: [ SDFlexDirective, SDTextAlignCenterDirective, SDLayoutDirective, SDLayoutWrapDirective, SDDatePipe, MaterialModule, BrowserModule, SDLayoutAlignRightDirective, SDFilterPipe, FormsModule ]
+    declarations: [ SDFlexDirective, SDTextAlignCenterDirective, SDLayoutDirective, SDLayoutWrapDirective, SDDatePipe, SDLayoutAlignRightDirective, SDFilterPipe, SDTruncatePipe],
+    exports: [ SDFlexDirective, SDTextAlignCenterDirective, SDLayoutDirective, SDLayoutWrapDirective, SDDatePipe, MaterialModule, BrowserModule, SDLayoutAlignRightDirective, SDFilterPipe, FormsModule, SDTruncatePipe ]
 })
 
 export class SDCommonModule { 
