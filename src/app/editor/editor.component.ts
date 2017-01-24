@@ -82,13 +82,6 @@ export class EditorComponent implements OnInit, OnChanges {
         this.reBuildTasks();
     }
 
-    getTasks() {
-        /*
-        this.taskService.getTasks('goal1')
-            .then(tasks => this.buildTasks(tasks));
-            */
-    }
-
     onTapped(event: any) {
         console.log('Hide Class');
         event.stopPropagation();
