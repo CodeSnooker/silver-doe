@@ -75,11 +75,7 @@ export class EditorComponent implements OnInit, OnChanges {
 
 
     ngOnInit() {
-        if (this.goal === undefined) {
-            this.goal = new Goal({title:''});
-        }
         this.reBuildTasks();
-        
     }
 
     ngOnChanges() {
