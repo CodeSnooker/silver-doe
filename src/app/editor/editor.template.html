@@ -7,7 +7,7 @@
 
             <!-- Header -->
             <div class="editor-header" sd-layout="row" style="flex-direction: row-reverse;">
-                <input type="text" [value]="goal?.title" placeholder="What is your goal for today ?"   />
+                <input type="text" [(ngModel)]="goal.title" placeholder="What is your goal for today ?"   />
                 <div>
                 <md-chip-list sd-flex>
                     <md-chip selected="true">Due By 10-Feb-2017</md-chip>

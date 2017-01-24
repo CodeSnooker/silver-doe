@@ -6,6 +6,7 @@ import { TaskCollection } from './../tasks/task/task.collection.model';
 import { Goal } from './../goalmanager/goal/goal.model';
 
 
+
 @Component({
     moduleId: module.id,
     selector: 'editor-layout',
@@ -74,6 +75,9 @@ export class EditorComponent implements OnInit, OnChanges {
 
 
     ngOnInit() {
+        if (this.goal === undefined) {
+            this.goal = new Goal({title:''});
+        }
         this.reBuildTasks();
         
     }

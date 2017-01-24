@@ -3,6 +3,7 @@ import { NgModule, ModuleWithProviders } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { MaterialModule } from '@angular/material';
 import { CommonModule } from '@angular/common';
+import { FormsModule }   from '@angular/forms';
 
 // Directives
 import { SDFlexDirective } from './sd.flex.directive';
@@ -16,9 +17,9 @@ import { SDDatePipe } from './sd.date.pipe';
 import { SDFilterPipe} from './sd.filter.pipe';
 
 @NgModule({
-    imports: [MaterialModule.forRoot(), BrowserModule, CommonModule],
+    imports: [MaterialModule.forRoot(), BrowserModule, CommonModule, FormsModule],
     declarations: [ SDFlexDirective, SDTextAlignCenterDirective, SDLayoutDirective, SDLayoutWrapDirective, SDDatePipe, SDLayoutAlignRightDirective, SDFilterPipe],
-    exports: [ SDFlexDirective, SDTextAlignCenterDirective, SDLayoutDirective, SDLayoutWrapDirective, SDDatePipe, MaterialModule, BrowserModule, SDLayoutAlignRightDirective, SDFilterPipe ]
+    exports: [ SDFlexDirective, SDTextAlignCenterDirective, SDLayoutDirective, SDLayoutWrapDirective, SDDatePipe, MaterialModule, BrowserModule, SDLayoutAlignRightDirective, SDFilterPipe, FormsModule ]
 })
 
 export class SDCommonModule { 
