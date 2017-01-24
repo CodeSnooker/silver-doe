@@ -5,125 +5,121 @@ import { Task } from './../tasks/task/task.model';
 import { TaskCollection } from './../tasks/task/task.collection.model';
 import { Goal } from './../goalmanager/goal/goal.model';
 
-
-
 @Component({
-    moduleId: module.id,
-    selector: 'editor-layout',
-    templateUrl: 'editor.template.html',
-    styleUrls: ['editor.styles.css']
+	moduleId: module.id,
+	selector: 'editor-layout',
+	templateUrl: 'editor.template.html',
+	styleUrls: ['editor.styles.css']
 })
 
-export class EditorComponent implements OnInit, OnChanges { 
+export class EditorComponent implements OnInit, OnChanges {
 
-    @Output() overlayTappedEventEmiiter = new EventEmitter<void> ();
-    @Input('goal') goal: Goal;
-    
-    private completedTasks:TaskCollection;
-    private inCompletedTasks:TaskCollection;
+	@Output() overlayTappedEventEmiiter = new EventEmitter < void > ();
+	@Input('goal') goal: Goal;
 
-    private showCompetedTasks = false;
-    private lamda = 'material-icons fadded anim zeroDeg';
+	private completedTasks: TaskCollection;
+	private inCompletedTasks: TaskCollection;
 
-    constructor(private taskService:TaskService, private zone:NgZone) {}
+	private showCompetedTasks = false;
+	private lamda = 'material-icons fadded anim zeroDeg';
 
-    itemClicked(event:any, taskItem: Task) {
-        
-        taskItem.completed = event.checked;
-        this.reBuildTasks();
-    }
+	constructor(private taskService: TaskService, private zone: NgZone) {}
 
-    onHover(event: any, index: number, completed:boolean) {
-        
-        let type:string = 'pending_';
+	itemClicked(event: any, taskItem: Task) {
+		taskItem.completed = event.checked;
+		this.reBuildTasks();
+	}
 
-        if (completed) {
-            type = 'completed_';
-        }else {
-            var moveElement = document.getElementById(type + 'move_' +  index);
-            moveElement.style.opacity = '1.0';
-        }
+	onHover(event: any, index: number, completed: boolean) {
+		let type: string = 'pending_';
 
-        var deleteElement = document.getElementById(type + 'delete_' +  index);        
-        deleteElement.style.opacity = '1.0';
-    }
+		if (completed) {
+			type = 'completed_';
+		} else {
+			var moveElement = document.getElementById(type + 'move_' + index);
+			moveElement.style.opacity = '1.0';
+		}
 
-    onMouseOut(event: any, index: number, completed:boolean) {
-        let type:string = 'pending_';
+		var deleteElement = document.getElementById(type + 'delete_' + index);
+		deleteElement.style.opacity = '1.0';
+	}
 
-        if (completed) {
-            type = 'completed_';
-        }
-        else {
-            var moveElement = document.getElementById(type + 'move_' +  index);
-            moveElement.style.opacity = '0.0';
-        }
+	onMouseOut(event: any, index: number, completed: boolean) {
+		let type: string = 'pending_';
 
-        var deleteElement = document.getElementById(type + 'delete_' +  index);
-        deleteElement.style.opacity = '0.0';
-    }
+		if (completed) {
+			type = 'completed_';
+		} else {
+			var moveElement = document.getElementById(type + 'move_' + index);
+			moveElement.style.opacity = '0.0';
+		}
 
-     
-     reBuildTasks() {
-
-         if (this.goal) {
-            this.goal.updateProgress();
-            this.completedTasks = this.goal.getCompletedTasks();
-            this.inCompletedTasks = this.goal.getInCompletedTasks();
-         }
-     }
+		var deleteElement = document.getElementById(type + 'delete_' + index);
+		deleteElement.style.opacity = '0.0';
+	}
 
 
-    ngOnInit() {
-        this.reBuildTasks();
-    }
+	reBuildTasks() {
+		if (this.goal) {
+			this.goal.updateProgress();
+			this.completedTasks = this.goal.getCompletedTasks();
+			this.inCompletedTasks = this.goal.getInCompletedTasks();
+		}
+	}
 
-    ngOnChanges() {
-        this.reBuildTasks();
-    }
+	ngOnInit() {
+		this.reBuildTasks();
+	}
 
-    onTapped(event: any) {
-        console.log('Hide Class');
-        event.stopPropagation();
+	ngOnChanges() {
+		this.reBuildTasks();
+	}
 
-        this.overlayTappedEventEmiiter.emit();
-    }
+	onTapped(event: any) {
+		console.log('Hide Class');
+		event.stopPropagation();
 
-    onGoalEditorTapped(event: any) {
-        event.stopPropagation();
-    }
+		this.overlayTappedEventEmiiter.emit();
+	}
 
-    toggleShowCompletedTasks(event:any) {
-        this.showCompetedTasks = !this.showCompetedTasks;
-        this.lamda  = 'material-icons fadded anim zeroDeg'
+	onGoalEditorTapped(event: any) {
+		event.stopPropagation();
+	}
 
-        if (this.showCompetedTasks) {
-            this.lamda  = 'material-icons fadded anim ninetyDeg'
-        }
-    }
+	toggleShowCompletedTasks(event: any) {
+		this.showCompetedTasks = !this.showCompetedTasks;
+		this.lamda = 'material-icons fadded anim zeroDeg'
 
-    deleteTask(taskItem: Task) {
-        let removed:boolean = this.goal.tasks.remove(taskItem);
-        if (removed) {
-            // Rebuild the tasks
-            this.reBuildTasks();
-        }
-    }
+		if (this.showCompetedTasks) {
+			this.lamda = 'material-icons fadded anim ninetyDeg'
+		}
+	}
 
-    addTask(event: any) {
-        console.log('Enter Key Pressed: ', event.target);
+	deleteTask(taskItem: Task) {
+		let removed: boolean = this.goal.tasks.remove(taskItem);
+		if (removed) {
+			// Rebuild the tasks
+			this.reBuildTasks();
+		}
+	}
 
-        let taskTitle:string = event.target.value;
-        taskTitle = taskTitle.trim();
+	addTask(event: any) {
+		console.log('Enter Key Pressed: ', event.target);
 
-        if (taskTitle.length > 0) {
-            
-            // Let's add new task in the list
-            let taskItem: Task = new Task({title:taskTitle, belongsTo:this.goal.id});
-            this.goal.tasks.push(taskItem);
-            this.reBuildTasks();
-        }
-        
-        event.target.value = "";
-    }
+		let taskTitle: string = event.target.value;
+		taskTitle = taskTitle.trim();
+
+		if (taskTitle.length > 0) {
+
+			// Let's add new task in the list
+			let taskItem: Task = new Task({
+				title: taskTitle,
+				belongsTo: this.goal.id
+			});
+			this.goal.tasks.push(taskItem);
+			this.reBuildTasks();
+		}
+
+		event.target.value = "";
+	}
 }

@@ -1,6 +1,9 @@
 <div class="goal sd-card">
     <goal-header title="{{goalItem.title}}">Goal Header</goal-header>
-    <div class="progress"> </div>
+    
+    <!-- Progress bar -->
+    <md-progress-bar value="{{goalItem?.progress}}" color="warn"></md-progress-bar>
+    
     <div class="goal-body" sd-center>
         <div sd-flex>Goal Container for 
             <i style="color:chocolate;">

@@ -4,7 +4,7 @@ export class Goal  {
          readonly id: string;
                title: string;
             archived: boolean;
-               tasks: TaskCollection;
+  private     _tasks: TaskCollection;
   readonly createdAt: Date;
   private _updatedAt: Date;
    private _progress: number = 0;
@@ -20,6 +20,15 @@ export class Goal  {
         this.tasks = goalJSON.tasks ? goalJSON.tasks : new TaskCollection();
         this.createdAt = goalJSON.createdAt ? goalJSON.createdAt : new Date();
         this._updatedAt = goalJSON.updatedAt ? goalJSON.updatedAt : new Date();
+    }
+
+    get tasks() {
+        return this._tasks;
+    }
+
+    set tasks(tasks:TaskCollection) {
+        this._tasks = tasks;
+        this.updateProgress();
     }
 
     get updatedAt() {
