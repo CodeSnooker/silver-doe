@@ -20,3 +20,8 @@
     max-height: 3.6em;
     line-height: 1.2em;
 }
+
+.completed {
+  text-decoration: line-through;
+  color: #737373;
+}
