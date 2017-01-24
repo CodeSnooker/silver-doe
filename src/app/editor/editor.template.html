@@ -22,14 +22,16 @@
             <div sd-layout="column" style="overflow: scroll;">
 
                 <!-- Pending Tasks -->
-                <div sd-layout="row" class="task" *ngFor="let taskItem of inCompletedTasks; let i = index" (mouseover)="onHover($event, i, false)" (mouseout)="onMouseOut($event, i, false)">
-                    <button id="pending_move_{{i}}" class="app-icon-button invisible anim">
+                <div class="task" *ngFor="let taskItem of inCompletedTasks; let i = index" (mouseover)="onHover($event, i, false)" (mouseout)="onMouseOut($event, i, false)" dnd-sortable-container [dropZones]="['pending-zone']" [sortableData]="inCompletedTasks">
+                    <div sd-layout="row" dnd-sortable [sortableIndex]="i" >
+                    <button id="pending_move_{{i}}" class="app-icon-button invisible anim move">
                         <i class="material-icons">more_vert</i>
                     </button>
                     <md-checkbox sd-flex class="task-checkbox" color="warn" [checked]="taskItem.completed" (change)="itemClicked($event, taskItem)">{{taskItem.title}}</md-checkbox>
                     <button id="pending_delete_{{i}}" class="app-icon-button cancel-task invisible anim" (click)="deleteTask(taskItem)" md-tooltip="Delete" mdTooltipPosition="above">
                             <i class="material-icons">cancel</i>
                     </button>
+                    </div>
                 </div>
 
                 <!-- Add New Task -->
