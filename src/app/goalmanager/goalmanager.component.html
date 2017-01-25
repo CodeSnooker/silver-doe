@@ -3,6 +3,6 @@
     <input (keyup.enter)="addGoal($event)" class="addGoal" type="text" value="" placeholder="What is your goal for today ?"   />
     
     <div class="goals" sd-layout="row" sd-layout-wrap dnd-sortable-container [dropZones]="['boxers-zone']" [sortableData]="_listGoals">
-        <goal [goalItem]="goalItem" *ngFor="let goalItem of _listGoals; let i = index" dnd-sortable [sortableIndex]="i" (click)="editGoal($event, goalItem)"></goal>
+        <goal [goalItem]="goalItem" *ngFor="let goalItem of _listGoals; let i = index" dnd-sortable [sortableIndex]="i"></goal>
     </div>
 </div>

@@ -15,8 +15,6 @@ import { Task } from './../tasks/task/task.model';
 
 export class GoalManagerComponent implements OnInit {
 
-    @Output() goalTappedEmitter = new EventEmitter<void> (); 
-
     private _listGoals: GoalCollection;
     
 
@@ -59,9 +57,4 @@ export class GoalManagerComponent implements OnInit {
         src.value = "";
     }
 
-    editGoal(event:any, goal:Goal) {
-        event.stopPropagation();
-        event.goal = goal;
-        this.goalTappedEmitter.emit(event);
-    }
 }

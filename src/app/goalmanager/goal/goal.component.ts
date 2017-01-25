@@ -1,4 +1,4 @@
-import { Component, Input, OnChanges } from '@angular/core';
+import { Component, Input, OnChanges, Output, EventEmitter } from '@angular/core';
 import { Goal } from './goal.model';
 import { Task } from './../../tasks/task/task.model';
 import { TaskCollection } from './../../tasks/task/task.collection.model';
@@ -14,6 +14,8 @@ export class GoalComponent implements OnChanges {
     @Input ('title') title: string;
     @Input ('goalItem') goalItem: Goal;
 
+    @Output() goalTappedEmitter = new EventEmitter<void> (); 
+
     private completedTasks:TaskCollection;
     private inCompletedTasks:TaskCollection;
 
@@ -21,6 +23,7 @@ export class GoalComponent implements OnChanges {
         if (this.goalItem) {
             this.completedTasks = this.goalItem.getCompletedTasks();
             this.inCompletedTasks = this.goalItem.getInCompletedTasks();
+            this.goalItem.updateProgress();
         }
     }
 
@@ -50,5 +53,11 @@ export class GoalComponent implements OnChanges {
     onArchiveEvent(toArchive:boolean) {
         console.log("#Goal Component: archive = ", toArchive);
         this.goalItem.archived = !this.goalItem.archived;
+    }
+
+    editGoal(event:any, goal:Goal) {
+        event.stopPropagation();
+        event.goal = goal;
+        this.goalTappedEmitter.emit(event);
     }
 }
