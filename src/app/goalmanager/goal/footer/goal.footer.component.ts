@@ -14,27 +14,32 @@ export class GoalFooterComponent {
     @Output() fireDeleteEvent = new EventEmitter();
     @Output() fireArchiveEvent = new EventEmitter<boolean> ();
 
-    onCopyEvent() {
+    onCopyEvent(event:any) {
         console.log('Copy Goal');
+        event.stopPropagation();
         this.fireCopyEvent.emit();
     }
 
-    onPrintEvent(){
+    onPrintEvent(event:any){
+        event.stopPropagation();
         console.log('Print Goal');
         this.firePrintEvent.emit();
     }
 
-    onDeleteEvent() {
+    onDeleteEvent(event:any) {
+        event.stopPropagation();
         console.log('Delete Goal');
         this.fireDeleteEvent.emit();
     }
 
-    onArchiveEvent() {
+    onArchiveEvent(event:any) {
+        event.stopPropagation();
         console.log('Archive Goal');
         this.fireArchiveEvent.emit(true);
     }
 
-    onUnArchiveEvent() {
+    onUnArchiveEvent(event:any) {
+        event.stopPropagation();
         console.log('UnArchive Goal');
         this.fireArchiveEvent.emit(false);
     }

@@ -1,18 +1,18 @@
 <div class="goal-footer" sd-layout="row">
     <div sd-layout="row">
-            <button class="app-icon-button" md-tooltip="Copy" mdTooltipPosition="above" (click)="onCopyEvent()" >
+            <button class="app-icon-button" md-tooltip="Copy" mdTooltipPosition="above" (click)="onCopyEvent($event)" >
                 <i class="material-icons">content_copy</i>
             </button>
-            <button class="app-icon-button" md-tooltip="Archive" mdTooltipPosition="above"  (click)="onArchiveEvent()">
+            <button class="app-icon-button" md-tooltip="Archive" mdTooltipPosition="above"  (click)="onArchiveEvent($event)">
                 <i class="material-icons">archive</i>
             </button>
-            <button class="app-icon-button" md-tooltip="Print" mdTooltipPosition="above"  (click)="onPrintEvent()">
+            <button class="app-icon-button" md-tooltip="Print" mdTooltipPosition="above"  (click)="onPrintEvent($event)">
                 <i class="material-icons">print</i>
             </button>
     </div>
     <div sd-flex></div>
     <div sd-layout="row">
-    <button class="app-icon-button" md-tooltip="Delete" mdTooltipPosition="above" (click)="onDeleteEvent()" >
+    <button class="app-icon-button" md-tooltip="Delete" mdTooltipPosition="above" (click)="onDeleteEvent($event)" >
             <i class="material-icons">delete</i>
     </button>
     </div>

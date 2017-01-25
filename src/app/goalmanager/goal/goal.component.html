@@ -6,12 +6,12 @@
     
     <div class="goal-body">
         <div class="task" *ngFor="let taskItem of inCompletedTasks; let i = index" sd-layout="row">
-            <md-checkbox class="task-checkbox" color="warn" [checked]="taskItem.completed" (change)="itemClicked($event, taskItem)"></md-checkbox>
-            <span class="description" (click)="editGoal($event, goalItem)">{{taskItem.title | sdtruncate : 60 }}</span>
+            <md-checkbox class="task-checkbox" color="warn" [checked]="taskItem.completed" (change)="itemClicked($event, taskItem)" (click)="$event.stopPropagation()"></md-checkbox>
+            <span class="description">{{taskItem.title | sdtruncate : 60 }}</span>
         </div>
         <div class="task completed" *ngFor="let taskItem of completedTasks; let i = index" sd-layout="row">
-            <md-checkbox class="task-checkbox" color="warn" [checked]="taskItem.completed" (change)="itemClicked($event, taskItem)"></md-checkbox>
-            <span class="description" (click)="editGoal($event, goalItem)">{{taskItem.title | sdtruncate : 60 }}</span>
+            <md-checkbox class="task-checkbox" color="warn" [checked]="taskItem.completed" (change)="itemClicked($event, taskItem)" (click)="$event.stopPropagation()"></md-checkbox>
+            <span class="description">{{taskItem.title | sdtruncate : 60 }}</span>
         </div>
     </div>
     <goal-footer (fireCopyEvent)="onCopyEvent($event)" 

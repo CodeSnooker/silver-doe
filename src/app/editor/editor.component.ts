@@ -1,4 +1,4 @@
-import { Component, OnInit, OnChanges, EventEmitter, Input, Output, NgZone } from '@angular/core';
+import { Component, OnInit, OnChanges, EventEmitter, Input, Output, DoCheck } from '@angular/core';
 import { GoalService } from './../goalmanager/goal/goal.service';
 import { TaskService } from './../tasks/task/task.service';
 import { Task } from './../tasks/task/task.model';
@@ -12,7 +12,7 @@ import { Goal } from './../goalmanager/goal/goal.model';
 	styleUrls: ['editor.styles.css']
 })
 
-export class EditorComponent implements OnInit, OnChanges {
+export class EditorComponent implements OnInit, OnChanges, DoCheck {
 
 	@Output() overlayTappedEventEmiiter = new EventEmitter < void > ();
 	@Input('goal') goal: Goal;
@@ -23,7 +23,7 @@ export class EditorComponent implements OnInit, OnChanges {
 	private showCompetedTasks = false;
 	private lamda = 'material-icons fadded anim zeroDeg';
 
-	constructor(private taskService: TaskService, private zone: NgZone) {}
+	constructor(private taskService: TaskService) {}
 
 	itemClicked(event: any, taskItem: Task) {
 		taskItem.completed = event.checked;
@@ -71,7 +71,11 @@ export class EditorComponent implements OnInit, OnChanges {
 		this.reBuildTasks();
 	}
 
-	ngOnChanges() {
+	ngOnChanges(changes: any) {
+		this.reBuildTasks();
+	}
+
+	ngDoCheck() {
 		this.reBuildTasks();
 	}
 

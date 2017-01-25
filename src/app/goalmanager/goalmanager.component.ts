@@ -17,6 +17,7 @@ export class GoalManagerComponent implements OnInit {
 
     private _listGoals: GoalCollection;
     
+    @Output() goalTappedEmitter = new EventEmitter<void> (); 
 
     constructor(private goalService:GoalService, private taskService:TaskService) {
         //this._listGoals = GOALS;
@@ -55,6 +56,12 @@ export class GoalManagerComponent implements OnInit {
         }
         
         src.value = "";
+    }
+    
+    editGoal(event:any, goal:Goal) {
+        event.stopPropagation();
+        event.goal = goal;
+        this.goalTappedEmitter.emit(event);
     }
 
 }

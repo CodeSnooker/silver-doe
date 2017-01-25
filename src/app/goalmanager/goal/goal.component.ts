@@ -1,4 +1,4 @@
-import { Component, Input, OnChanges, Output, EventEmitter } from '@angular/core';
+import { Component, Input, OnChanges, Output, EventEmitter, DoCheck } from '@angular/core';
 import { Goal } from './goal.model';
 import { Task } from './../../tasks/task/task.model';
 import { TaskCollection } from './../../tasks/task/task.collection.model';
@@ -10,11 +10,11 @@ import { TaskCollection } from './../../tasks/task/task.collection.model';
     styleUrls: ['goal.component.css']
 })
 
-export class GoalComponent implements OnChanges {
+export class GoalComponent implements OnChanges, DoCheck {
     @Input ('title') title: string;
     @Input ('goalItem') goalItem: Goal;
 
-    @Output() goalTappedEmitter = new EventEmitter<void> (); 
+    
 
     private completedTasks:TaskCollection;
     private inCompletedTasks:TaskCollection;
@@ -29,12 +29,17 @@ export class GoalComponent implements OnChanges {
 
     itemClicked(event:any, taskItem:Task) {
         //event.stopPropagation();
+        //event.stopPropagation();
         taskItem.completed = event.checked;
         this.reComputeTasks();
         
     }
 
     ngOnChanges() {
+        this.reComputeTasks();
+    }
+
+    ngDoCheck() {
         this.reComputeTasks();
     }
 
@@ -55,9 +60,5 @@ export class GoalComponent implements OnChanges {
         this.goalItem.archived = !this.goalItem.archived;
     }
 
-    editGoal(event:any, goal:Goal) {
-        event.stopPropagation();
-        event.goal = goal;
-        this.goalTappedEmitter.emit(event);
-    }
+    
 }
