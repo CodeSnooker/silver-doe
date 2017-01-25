@@ -121,3 +121,12 @@ sd-planner {
 .invisible {
   opacity: 0;
 }
+
+
+.odd {
+    background-color: #FAFAFA;
+
+}
+.even {
+    background-color: #F2F2F2;
+}

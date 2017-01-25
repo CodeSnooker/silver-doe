@@ -22,8 +22,8 @@
             <div sd-layout="column" style="overflow: scroll;">
 
                 <!-- Pending Tasks -->
-                <div class="task" *ngFor="let taskItem of inCompletedTasks; let i = index" (mouseover)="onHover($event, i, false)" (mouseout)="onMouseOut($event, i, false)" dnd-sortable-container [dropZones]="['pending-zone']" [sortableData]="inCompletedTasks">
-                    <div sd-layout="row" dnd-sortable [sortableIndex]="i" >
+                <div class="task" *ngFor="let taskItem of inCompletedTasks; let i = index; let isOdd=odd; let isEven=even;"   (mouseover)="onHover($event, i, false)" (mouseout)="onMouseOut($event, i, false)" dnd-sortable-container [dropZones]="['pending-zone']" [sortableData]="inCompletedTasks">
+                    <div sd-layout="row" dnd-sortable [sortableIndex]="i" [class.odd]="isOdd" [class.even]="isEven" >
                     <button id="pending_move_{{i}}" class="app-icon-button invisible anim move">
                         <i class="material-icons">more_vert</i>
                     </button>
@@ -54,14 +54,16 @@
 
 
                 <div sd-flex *ngIf="showCompetedTasks">
-                    <div sd-layout="row" class="task completed" *ngFor="let taskItem of completedTasks; let i = index" (mouseover)="onHover($event, i, true)" (mouseout)="onMouseOut($event, i, true)">
-                        <button class="app-icon-button invisible" >
-                            <i class="material-icons">more_vert</i>
-                        </button>
-                        <md-checkbox sd-flex class="task-checkbox" color="warn" [checked]="taskItem.completed" (change)="itemClicked($event, taskItem)" md-tooltip="Finished On: {{taskItem.completedAt | sddate}}" mdTooltipPosition="above">{{taskItem.title}}</md-checkbox>
-                        <button id="completed_delete_{{i}}" class="app-icon-button cancel-task invisible anim" (click)="deleteTask(taskItem)" md-tooltip="Delete" mdTooltipPosition="below">
-                            <i class="material-icons">cancel</i>
-                        </button>
+                    <div class="task completed" *ngFor="let taskItem of completedTasks; let i = index; let isOdd=odd; let isEven=even;" (mouseover)="onHover($event, i, true)" (mouseout)="onMouseOut($event, i, true)">
+                        <div sd-layout="row" [class.odd]="isOdd" [class.even]="isEven">
+                            <button class="app-icon-button invisible" >
+                                <i class="material-icons">more_vert</i>
+                            </button>
+                            <md-checkbox sd-flex class="task-checkbox" color="warn" [checked]="taskItem.completed" (change)="itemClicked($event, taskItem)" md-tooltip="Finished On: {{taskItem.completedAt | sddate}}" mdTooltipPosition="above">{{taskItem.title}}</md-checkbox>
+                            <button id="completed_delete_{{i}}" class="app-icon-button cancel-task invisible anim" (click)="deleteTask(taskItem)" md-tooltip="Delete" mdTooltipPosition="below">
+                                <i class="material-icons">cancel</i>
+                            </button>
+                        </div>
                     </div>
                 </div>
             </div>
