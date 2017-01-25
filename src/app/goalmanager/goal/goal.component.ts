@@ -1,5 +1,6 @@
 import { Component, Input, OnChanges } from '@angular/core';
 import { Goal } from './goal.model';
+import { Task } from './../../tasks/task/task.model';
 import { TaskCollection } from './../../tasks/task/task.collection.model';
 
 @Component({
@@ -21,6 +22,13 @@ export class GoalComponent implements OnChanges {
             this.completedTasks = this.goalItem.getCompletedTasks();
             this.inCompletedTasks = this.goalItem.getInCompletedTasks();
         }
+    }
+
+    itemClicked(event:any, taskItem:Task) {
+        //event.stopPropagation();
+        taskItem.completed = event.checked;
+        this.reComputeTasks();
+        
     }
 
     ngOnChanges() {
