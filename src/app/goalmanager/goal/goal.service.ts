@@ -10,6 +10,12 @@ export class GoalService {
         return Promise.resolve(GOALS);
     }
 
+    clone(goal: Goal): Promise<void> {
+        let clonedObject:Goal = goal.clone();
+        GOALS.push(clonedObject);
+        
+        return Promise.resolve();
+    }
 }
 
 

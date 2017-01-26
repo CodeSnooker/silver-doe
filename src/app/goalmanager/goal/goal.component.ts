@@ -2,6 +2,7 @@ import { Component, Input, OnChanges, Output, EventEmitter, DoCheck } from '@ang
 import { Goal } from './goal.model';
 import { Task } from './../../tasks/task/task.model';
 import { TaskCollection } from './../../tasks/task/task.collection.model';
+import { GoalService } from './goal.service'; 
 
 @Component({
     moduleId: module.id,
@@ -14,7 +15,9 @@ export class GoalComponent implements OnChanges, DoCheck {
     @Input ('title') title: string;
     @Input ('goalItem') goalItem: Goal;
 
-    
+    constructor(private goalService:GoalService) {
+
+    }
 
     private completedTasks:TaskCollection;
     private inCompletedTasks:TaskCollection;
@@ -44,9 +47,7 @@ export class GoalComponent implements OnChanges, DoCheck {
     }
 
     onCopyEvent() {
-        console.log('#Goal Component: copy');
-        let cloneObject:Goal = this.goalItem.clone();
-        console.log('Cloned Goal: ', cloneObject);
+        this.goalService.clone(this.goalItem);
     }
 
     onPrintEvent() {

@@ -57,9 +57,8 @@ export class Goal  {
     }
 
     clone():Goal {
-        //console.error('Error: Goal #Clone method not impletement yet.');
         return new Goal({
-                title: this.title, 
+                title: this.title + ' (clone)', 
                 tasks: this.tasks.clone(), 
                 archived: this.archived
             });
