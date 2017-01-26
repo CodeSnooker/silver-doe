@@ -16,6 +16,16 @@ export class GoalService {
         
         return Promise.resolve();
     }
+
+    remove(goal: Goal): Promise<void> {
+
+        let index:number = GOALS.indexOf(goal);
+        if (index > -1) {
+            GOALS.splice(index, 1);
+        }
+
+        return Promise.resolve();
+    }
 }
 
 

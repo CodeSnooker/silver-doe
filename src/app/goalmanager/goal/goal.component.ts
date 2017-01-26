@@ -55,7 +55,8 @@ export class GoalComponent implements OnChanges, DoCheck {
     }
 
     onDeleteEvent() {
-        console.log("#Goal Component: delete");
+        this.goalService.remove(this.goalItem);
+        //console.log("#Goal Component: delete");
     }
 
     onArchiveEvent(toArchive:boolean) {
