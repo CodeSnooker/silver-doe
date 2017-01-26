@@ -29,7 +29,8 @@
       'angular-in-memory-web-api': 'npm:angular-in-memory-web-api/bundles/in-memory-web-api.umd.js',
 
       // Extra libraries
-      'ng2-dnd': 'node_modules/ng2-dnd/bundles/index.umd.js'
+      'ng2-dnd': 'node_modules/ng2-dnd/bundles/index.umd.js',
+      'ng2-toasty': 'node_modules/ng2-toasty/bundles/index.umd.js'
     },
     // packages tells the System loader how to load when no filename and/or no extension
     packages: {

@@ -4,6 +4,7 @@ import { TaskService } from './../tasks/task/task.service';
 import { Task } from './../tasks/task/task.model';
 import { TaskCollection } from './../tasks/task/task.collection.model';
 import { Goal } from './../goalmanager/goal/goal.model';
+import {ToastyService, ToastyConfig, ToastOptions, ToastData} from 'ng2-toasty';
 
 
 @Component({
@@ -24,7 +25,14 @@ export class EditorComponent implements OnInit, OnChanges, DoCheck {
 	private showCompetedTasks = false;
 	private lamda = 'material-icons fadded anim zeroDeg';
 
-	constructor(private taskService: TaskService, private goalService: GoalService) {}
+	constructor(private taskService: TaskService, 
+				private goalService: GoalService, 
+				private toastyService:ToastyService, 
+				private toastyConfig: ToastyConfig) {
+
+		this.toastyConfig.theme = 'material';
+		this.toastyConfig.position = 'top-right';
+	}
 
 	itemClicked(event: any, taskItem: Task) {
 		taskItem.completed = event.checked;
@@ -135,6 +143,13 @@ export class EditorComponent implements OnInit, OnChanges, DoCheck {
 	onDeleteGoalEvent($event:any) {
 		this.goalService.remove(this.goal);
 		this.onTapped($event);
+		this.toastyService.success({
+			title: "Toast It!",
+			msg: "Mmmm, tasties...",
+			showClose: true,
+			timeout: 5000,
+			theme: "material"
+		});
 		//delete this.goal.tasks;
 		//delete this.goal;
 	}
@@ -145,14 +160,23 @@ export class EditorComponent implements OnInit, OnChanges, DoCheck {
 
 	onPrintGoalEvent() {
 		console.log('Print Goal: ', this.goal.title, ' is not implemented yet');
+				this.toastyService.success({
+			title: "Toast It!",
+			msg: "Mmmm, tasties...",
+			showClose: true,
+			timeout: 5000,
+			theme: "material"
+		});
+
 	}
 
 	onScheduleGoalEvent() {
 		console.log('Schedule Goal: ', this.goal.title, ' is not implemented yet');
 	}
 
-	onSaveGoalEvent() {
-		console.log('Save Goal: ', this.goal.title, ' is not implemented yet');
+	onSaveGoalEvent($event:any) {
+		//console.log('Save Goal: ', this.goal.title, ' is not implemented yet');
+		this.onTapped($event);
 	}
 }
 
