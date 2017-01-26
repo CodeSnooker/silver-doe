@@ -5,6 +5,7 @@ import { Task } from './../tasks/task/task.model';
 import { TaskCollection } from './../tasks/task/task.collection.model';
 import { Goal } from './../goalmanager/goal/goal.model';
 
+
 @Component({
 	moduleId: module.id,
 	selector: 'editor-layout',
@@ -23,7 +24,7 @@ export class EditorComponent implements OnInit, OnChanges, DoCheck {
 	private showCompetedTasks = false;
 	private lamda = 'material-icons fadded anim zeroDeg';
 
-	constructor(private taskService: TaskService) {}
+	constructor(private taskService: TaskService, private goalService: GoalService) {}
 
 	itemClicked(event: any, taskItem: Task) {
 		taskItem.completed = event.checked;
@@ -126,4 +127,32 @@ export class EditorComponent implements OnInit, OnChanges, DoCheck {
 
 		event.target.value = "";
 	}
+
+	onCopyGoalEvent() {
+		this.goalService.clone(this.goal).then(goal => this.goal = goal)  ;
+	}
+
+	onDeleteGoalEvent($event:any) {
+		this.goalService.remove(this.goal);
+		this.onTapped($event);
+		//delete this.goal.tasks;
+		//delete this.goal;
+	}
+
+	onArchiveGoalEvent() {
+		this.goal.archived = true;
+	}
+
+	onPrintGoalEvent() {
+		console.log('Print Goal: ', this.goal.title, ' is not implemented yet');
+	}
+
+	onScheduleGoalEvent() {
+		console.log('Schedule Goal: ', this.goal.title, ' is not implemented yet');
+	}
+
+	onSaveGoalEvent() {
+		console.log('Save Goal: ', this.goal.title, ' is not implemented yet');
+	}
 }
+
