@@ -58,8 +58,15 @@ export class Task {
     }
 
     clone():Task {
-        console.error('Error: Task #Clone method not impletement yet.');
-        return new Task({title: this.title});
+        return new Task({
+                title: this.title, 
+                completed:this.completed, 
+                percent:this.percent, 
+                dueDate:this.dueDate, 
+                completedAt:this.completedAt,
+                belongsTo:this.belongsTo,
+                showPercentage: this.showPercentage
+            });
     }
 
 }

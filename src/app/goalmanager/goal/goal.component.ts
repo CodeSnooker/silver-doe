@@ -44,7 +44,9 @@ export class GoalComponent implements OnChanges, DoCheck {
     }
 
     onCopyEvent() {
-        console.log('#Goal Compoent: copy');
+        console.log('#Goal Component: copy');
+        let cloneObject:Goal = this.goalItem.clone();
+        console.log('Cloned Goal: ', cloneObject);
     }
 
     onPrintEvent() {

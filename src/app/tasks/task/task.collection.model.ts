@@ -18,8 +18,19 @@ export class TaskCollection extends Array<Task>
         return this.convertToCollection(this.filter(task => task.completed === completed));
     }
 
-    clone() {
-        console.error('Error: TaskCollection #Clone method not impletement yet.');
+    clone():TaskCollection {
+
+        let cloneObject:TaskCollection  = new TaskCollection();
+        
+        for (let i=0; i<this.length; i++) {
+            let task:Task = this[i];
+            let cloneTask:Task = task.clone();
+            cloneObject.push(cloneTask);
+        }
+
+        console.log('Clone TaskCollection = ', cloneObject);
+
+        return cloneObject;
     }
 
     remove(taskItem:Task):boolean {
