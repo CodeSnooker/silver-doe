@@ -56,8 +56,7 @@
                             <sd-chip *ngIf="taskItem?.dueDate" icon="alarm_on" (close)="removeDueDateFromTask($event)" [ngModel]="taskItem">
                                 {{taskItem.dueDate | date: 'dd-MMM-yyyy'}}
                             </sd-chip>
-                            <sd-chip *ngIf="taskItem?.showPercentage" readonly icon="trending_up">
-                                {{taskItem.percent}}%
+                            <sd-chip *ngIf="taskItem.showPercentage" icon="trending_up">
                                 <md-slider [(ngModel)]="taskItem.percent" thumb-label="true"></md-slider>
                             </sd-chip>
                         </md-chip-list>
