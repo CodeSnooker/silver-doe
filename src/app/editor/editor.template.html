@@ -33,14 +33,6 @@
 
                             <!-- Context Menu -->
                             <md-menu #menu="mdMenu">
-                                <button md-menu-item *ngIf="!taskItem?.dueDate">
-                                    <md-icon>alarm_add</md-icon>
-                                    <span>Add Reminder</span>
-                                </button>
-                                <button md-menu-item *ngIf="taskItem?.dueDate">
-                                    <md-icon>alarm_off</md-icon>
-                                    <span>Remove Reminder</span>
-                                </button>
                                 <button md-menu-item *ngIf="!taskItem?.showPercentage" (click)="addProgress(taskItem)">
                                     <md-icon>trending_up</md-icon>
                                     <span>Set Progress</span>
@@ -50,13 +42,13 @@
                                     <span>Remove Progress</span>
                                 </button>
                             </md-menu>
-
                         </div>
-                        <md-chip-list sd-flex style="padding-left: 52px;">
+
+                        <md-chip-list sd-flex class="editor-chip-list">
                             <sd-chip *ngIf="taskItem?.dueDate" icon="alarm_on" (close)="removeDueDateFromTask($event)" [ngModel]="taskItem">
                                 {{taskItem.dueDate | date: 'dd-MMM-yyyy'}}
                             </sd-chip>
-                            <sd-chip *ngIf="taskItem.showPercentage" icon="trending_up">
+                            <sd-chip *ngIf="taskItem.showPercentage" icon="trending_up" (close)="removeProgressFromTask($event)" [ngModel]="taskItem">
                                 <md-slider [(ngModel)]="taskItem.percent" thumb-label="true"></md-slider>
                             </sd-chip>
                         </md-chip-list>
@@ -86,23 +78,25 @@
 
                 <div sd-flex *ngIf="showCompetedTasks">
                     <div class="task completed" *ngFor="let taskItem of completedTasks; let i = index; let isOdd=odd; let isEven=even;" (mouseover)="onHover($event, i, true)" (mouseout)="onMouseOut($event, i, true)">
-                        <div sd-layout="row" [class.odd]="isOdd" [class.even]="isEven">
-                            <button class="app-icon-button invisible">
+                        <div sd-layout="column" [class.odd]="isOdd" [class.even]="isEven">
+                            <div sd-layout="row">
+                                <button class="app-icon-button invisible">
                                 <i class="material-icons">more_vert</i>
                             </button>
-                            <md-checkbox sd-flex class="task-checkbox" color="warn" [checked]="taskItem.completed" (change)="itemClicked($event, taskItem)" md-tooltip="Finished On: {{taskItem.completedAt | sddate}}" mdTooltipPosition="above">{{taskItem.title}}</md-checkbox>
-                            <button id="completed_delete_{{i}}" class="app-icon-button cancel-task invisible anim" (click)="deleteTask(taskItem)" md-tooltip="Delete" mdTooltipPosition="below">
+                                <md-checkbox sd-flex class="task-checkbox" color="warn" [checked]="taskItem.completed" (change)="itemClicked($event, taskItem)" md-tooltip="Finished On: {{taskItem.completedAt | sddate}}" mdTooltipPosition="above">{{taskItem.title}}</md-checkbox>
+                                <button id="completed_delete_{{i}}" class="app-icon-button cancel-task invisible anim" (click)="deleteTask(taskItem)" md-tooltip="Delete" mdTooltipPosition="below">
                                 <i class="material-icons">cancel</i>
                             </button>
+                            </div>
+                            <md-chip-list sd-flex class="editor-chip-list">
+                                <sd-chip *ngIf="taskItem?.dueDate" icon="schedule" readonly [ngModel]="taskItem">
+                                    {{taskItem.dueDate | date: 'dd-MMM-yyyy'}}
+                                </sd-chip>
+                                <sd-chip *ngIf="taskItem?.showPercentage" readonly icon="trending_up">
+                                    {{taskItem?.percent}}% completed
+                                </sd-chip>
+                            </md-chip-list>
                         </div>
-                        <md-chip-list sd-flex style="padding-left: 52px;">
-                            <sd-chip *ngIf="taskItem?.dueDate" icon="schedule" readonly [ngModel]="taskItem">
-                                {{taskItem.dueDate | date: 'dd-MMM-yyyy'}}
-                            </sd-chip>
-                            <sd-chip *ngIf="taskItem?.showPercentage" readonly icon="trending_up">
-                                {{taskItem?.percent}}% completed
-                            </sd-chip>
-                        </md-chip-list>
                     </div>
                 </div>
             </div>

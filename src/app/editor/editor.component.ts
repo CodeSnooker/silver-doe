@@ -5,6 +5,14 @@ import { Task } from './../tasks/task/task.model';
 import { TaskCollection } from './../tasks/task/task.collection.model';
 import { Goal } from './../goalmanager/goal/goal.model';
 import { ToastyService, ToastyConfig, ToastOptions, ToastData } from 'ng2-toasty';
+import { IMyOptions } from 'mydatepicker';
+
+export function yesterday(): any {
+	let date: Date = new Date();
+	let yesterdayInMilliSeconds = date.getTime() - (24 * 3600 * 1000);
+	date = new Date(yesterdayInMilliSeconds);
+	return { year: date.getFullYear(), month: date.getMonth() + 1, day: date.getDate() };
+}
 
 
 @Component({
@@ -24,6 +32,15 @@ export class EditorComponent implements OnInit, OnChanges, DoCheck {
 
 	private showCompetedTasks = false;
 	private lamda = 'material-icons fadded anim zeroDeg';
+
+	private myDatePickerOptions: IMyOptions = {
+		// other options...
+		dateFormat: 'dd.mm.yyyy',
+		showInputField: false,
+		disableUntil: yesterday(),
+		showClearDateBtn: false,
+		openSelectorTopOfInput:true
+	};
 
 	constructor(private taskService: TaskService,
 		private goalService: GoalService,
@@ -77,10 +94,16 @@ export class EditorComponent implements OnInit, OnChanges, DoCheck {
 		//console.log('#removeDueDateFromTask: chip => ', source);
 
 		if (source && source.chip && source.chip.value) {
-			let taskItem:Task = source.chip.value;
+			let taskItem: Task = source.chip.value;
 			taskItem.dueDate = undefined;
 		}
+	}
 
+	removeProgressFromTask(source: any) {
+		if (source && source.chip && source.chip.value) {
+			let taskItem: Task = source.chip.value;
+			taskItem.showPercentage = false;
+		}
 	}
 
 	removeDueDateFromGoal(event: any) {
@@ -108,13 +131,13 @@ export class EditorComponent implements OnInit, OnChanges, DoCheck {
 		this.reBuildTasks();
 	}
 
-	addProgress(task:Task) {
+	addProgress(task: Task) {
 		task.showPercentage = true;
 		task.percent = task.percent ? task.percent : 0;
 		//this.reBuildTasks();
 	}
 
-	removeProgress(task:Task) {
+	removeProgress(task: Task) {
 		task.showPercentage = false;
 		//this.reBuildTasks();
 	}

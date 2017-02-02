@@ -18,6 +18,11 @@
     padding: 16px;
 }
 
+.editor-chip-list {
+    padding-left: 52px;
+    outline: none;
+}
+
 .editor-header>input {
     border-radius: 2px;
     border: 0px;
