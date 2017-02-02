@@ -4,7 +4,7 @@ import { TaskService } from './../tasks/task/task.service';
 import { Task } from './../tasks/task/task.model';
 import { TaskCollection } from './../tasks/task/task.collection.model';
 import { Goal } from './../goalmanager/goal/goal.model';
-import {ToastyService, ToastyConfig, ToastOptions, ToastData} from 'ng2-toasty';
+import { ToastyService, ToastyConfig, ToastOptions, ToastData } from 'ng2-toasty';
 
 
 @Component({
@@ -16,7 +16,7 @@ import {ToastyService, ToastyConfig, ToastOptions, ToastData} from 'ng2-toasty';
 
 export class EditorComponent implements OnInit, OnChanges, DoCheck {
 
-	@Output() overlayTappedEventEmiiter = new EventEmitter < void > ();
+	@Output() overlayTappedEventEmiiter = new EventEmitter<void>();
 	@Input('goal') goal: Goal;
 
 	private completedTasks: TaskCollection;
@@ -25,10 +25,10 @@ export class EditorComponent implements OnInit, OnChanges, DoCheck {
 	private showCompetedTasks = false;
 	private lamda = 'material-icons fadded anim zeroDeg';
 
-	constructor(private taskService: TaskService, 
-				private goalService: GoalService, 
-				private toastyService:ToastyService, 
-				private toastyConfig: ToastyConfig) {
+	constructor(private taskService: TaskService,
+		private goalService: GoalService,
+		private toastyService: ToastyService,
+		private toastyConfig: ToastyConfig) {
 
 		this.toastyConfig.theme = 'material';
 		this.toastyConfig.position = 'top-right';
@@ -47,6 +47,9 @@ export class EditorComponent implements OnInit, OnChanges, DoCheck {
 		} else {
 			var moveElement = document.getElementById(type + 'move_' + index);
 			moveElement.style.opacity = '1.0';
+
+			//var scheduleElement = document.getElementById(type + 'schedule_' + index);
+			//scheduleElement.style.opacity = '1.0';
 		}
 
 		var deleteElement = document.getElementById(type + 'delete_' + index);
@@ -61,10 +64,27 @@ export class EditorComponent implements OnInit, OnChanges, DoCheck {
 		} else {
 			var moveElement = document.getElementById(type + 'move_' + index);
 			moveElement.style.opacity = '0.0';
+
+			//var scheduleElement = document.getElementById(type + 'schedule_' + index);
+			//scheduleElement.style.opacity = '0.0';
 		}
 
 		var deleteElement = document.getElementById(type + 'delete_' + index);
 		deleteElement.style.opacity = '0.0';
+	}
+
+	removeDueDateFromTask(source: any) {
+		//console.log('#removeDueDateFromTask: chip => ', source);
+
+		if (source && source.chip && source.chip.value) {
+			let taskItem:Task = source.chip.value;
+			taskItem.dueDate = undefined;
+		}
+
+	}
+
+	removeDueDateFromGoal(event: any) {
+		//console.log('#removeDueDateFromGoal: ', event);
 	}
 
 
@@ -88,8 +108,19 @@ export class EditorComponent implements OnInit, OnChanges, DoCheck {
 		this.reBuildTasks();
 	}
 
+	addProgress(task:Task) {
+		task.showPercentage = true;
+		task.percent = task.percent ? task.percent : 0;
+		//this.reBuildTasks();
+	}
+
+	removeProgress(task:Task) {
+		task.showPercentage = false;
+		//this.reBuildTasks();
+	}
+
 	onTapped(event: any) {
-		console.log('Hide Class');
+		//console.log('Hide Class');
 		event.stopPropagation();
 
 		this.overlayTappedEventEmiiter.emit();
@@ -117,7 +148,7 @@ export class EditorComponent implements OnInit, OnChanges, DoCheck {
 	}
 
 	addTask(event: any) {
-		console.log('Enter Key Pressed: ', event.target);
+		//console.log('Enter Key Pressed: ', event.target);
 
 		let taskTitle: string = event.target.value;
 		taskTitle = taskTitle.trim();
@@ -137,10 +168,10 @@ export class EditorComponent implements OnInit, OnChanges, DoCheck {
 	}
 
 	onCopyGoalEvent() {
-		this.goalService.clone(this.goal).then(goal => this.goal = goal)  ;
+		this.goalService.clone(this.goal).then(goal => this.goal = goal);
 	}
 
-	onDeleteGoalEvent($event:any) {
+	onDeleteGoalEvent($event: any) {
 		this.goalService.remove(this.goal);
 		this.onTapped($event);
 		this.toastyService.success({
@@ -160,7 +191,7 @@ export class EditorComponent implements OnInit, OnChanges, DoCheck {
 
 	onPrintGoalEvent() {
 		console.log('Print Goal: ', this.goal.title, ' is not implemented yet');
-				this.toastyService.success({
+		this.toastyService.success({
 			title: "Toast It!",
 			msg: "Mmmm, tasties...",
 			showClose: true,
@@ -174,7 +205,7 @@ export class EditorComponent implements OnInit, OnChanges, DoCheck {
 		console.log('Schedule Goal: ', this.goal.title, ' is not implemented yet');
 	}
 
-	onSaveGoalEvent($event:any) {
+	onSaveGoalEvent($event: any) {
 		//console.log('Save Goal: ', this.goal.title, ' is not implemented yet');
 		this.onTapped($event);
 	}

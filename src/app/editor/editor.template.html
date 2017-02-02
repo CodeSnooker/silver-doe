@@ -7,43 +7,75 @@
 
             <!-- Header -->
             <div class="editor-header" sd-layout="row" style="flex-direction: row-reverse;">
-                <input type="text" [ngModel]="goal?.title" (ngModelChange)="goal.title=$event" placeholder="What is your goal for today ?"   />
-                <div>
-                <md-chip-list sd-flex>
-                    <md-chip selected="true">Due By 10-Feb-2017</md-chip>
-                </md-chip-list>
-                </div>
+                <input type="text" [ngModel]="goal?.title" (ngModelChange)="goal.title=$event" placeholder="What is your goal for today ?" />
+                <!--
+                <sd-chip icon="schedule" (close)="removeDueDateFromGoal($event)"><b>Due By:</b> 10-Feb-2017</sd-chip>
+                -->
             </div>
 
             <!-- Progress bar -->
             <md-progress-bar value="{{goal?.progress}}" color="primary"></md-progress-bar>
-            
+
             <!-- Tasks -->
             <div sd-layout="column" style="overflow: scroll;">
 
                 <!-- Pending Tasks -->
-                <div class="task" *ngFor="let taskItem of inCompletedTasks; let i = index; let isOdd=odd; let isEven=even;"   (mouseover)="onHover($event, i, false)" (mouseout)="onMouseOut($event, i, false)" dnd-sortable-container [dropZones]="['pending-zone']" [sortableData]="inCompletedTasks">
-                    <div sd-layout="row" dnd-sortable [sortableIndex]="i" [class.odd]="isOdd" [class.even]="isEven" >
-                    <button id="pending_move_{{i}}" class="app-icon-button invisible anim move">
-                        <i class="material-icons">more_vert</i>
-                    </button>
-                    <md-checkbox sd-flex class="task-checkbox" color="warn" [checked]="taskItem.completed" (change)="itemClicked($event, taskItem)">{{taskItem.title}}</md-checkbox>
-                    <button id="pending_delete_{{i}}" class="app-icon-button cancel-task invisible anim" (click)="deleteTask(taskItem)" md-tooltip="Delete" mdTooltipPosition="above">
-                            <i class="material-icons">cancel</i>
-                    </button>
+                <div class="task" *ngFor="let taskItem of inCompletedTasks; let i = index; let isOdd=odd; let isEven=even;" (mouseover)="onHover($event, i, false)" (mouseout)="onMouseOut($event, i, false)" dnd-sortable-container [dropZones]="['pending-zone']" [sortableData]="inCompletedTasks">
+                    <div sd-layout="column" dnd-sortable [sortableIndex]="i" [class.odd]="isOdd" [class.even]="isEven">
+                        <div sd-layout="row">
+                            <button id="pending_move_{{i}}" class="app-icon-button invisible anim move" [mdMenuTriggerFor]="menu">
+                                <i class="material-icons">more_vert</i>
+                            </button>
+                            <md-checkbox sd-flex class="task-checkbox" color="warn" [checked]="taskItem.completed" (change)="itemClicked($event, taskItem)">{{taskItem.title}}</md-checkbox>
+                            <button id="pending_delete_{{i}}" class="app-icon-button cancel-task invisible anim" (click)="deleteTask(taskItem)" md-tooltip="Delete" mdTooltipPosition="above">
+                                <i class="material-icons">cancel</i>
+                            </button>
+
+                            <!-- Context Menu -->
+                            <md-menu #menu="mdMenu">
+                                <button md-menu-item *ngIf="!taskItem?.dueDate">
+                                    <md-icon>alarm_add</md-icon>
+                                    <span>Add Reminder</span>
+                                </button>
+                                <button md-menu-item *ngIf="taskItem?.dueDate">
+                                    <md-icon>alarm_off</md-icon>
+                                    <span>Remove Reminder</span>
+                                </button>
+                                <button md-menu-item *ngIf="!taskItem?.showPercentage" (click)="addProgress(taskItem)">
+                                    <md-icon>trending_up</md-icon>
+                                    <span>Set Progress</span>
+                                </button>
+                                <button md-menu-item *ngIf="taskItem?.showPercentage" (click)="removeProgress(taskItem)">
+                                    <md-icon>remove_circle_outline</md-icon>
+                                    <span>Remove Progress</span>
+                                </button>
+                            </md-menu>
+
+                        </div>
+                        <md-chip-list sd-flex style="padding-left: 52px;">
+                            <sd-chip *ngIf="taskItem?.dueDate" icon="alarm_on" (close)="removeDueDateFromTask($event)" [ngModel]="taskItem">
+                                {{taskItem.dueDate | date: 'dd-MMM-yyyy'}}
+                            </sd-chip>
+                            <sd-chip *ngIf="taskItem?.showPercentage" readonly icon="trending_up">
+                                {{taskItem.percent}}%
+                                <md-slider [(ngModel)]="taskItem.percent" thumb-label="true"></md-slider>
+                            </sd-chip>
+                        </md-chip-list>
                     </div>
+
+
                 </div>
 
                 <!-- Add New Task -->
-                <div sd-layout="row" class="task">
-                    <button class="app-icon-button" style="padding-left:28px; padding-right: 6px; pointer-events: none;">
-                            <i class="material-icons fadded">add</i>
+                <div sd-layout=" row " class="task ">
+                    <button class="app-icon-button " style="padding-left:28px; padding-right: 6px; pointer-events: none; ">
+                            <i class="material-icons fadded ">add</i>
                     </button>
-                    <input class="new-task" type="text" value="" placeholder="Add new task" (keyup.enter)="addTask($event)" />
+                    <input class="new-task " type="text " value=" " placeholder="Add new task " (keyup.enter)="addTask($event) " />
                 </div>
 
                 <!-- Completed Tasks -->
-                <div sd-layout="row" class="completedTasks fadded" (click)="toggleShowCompletedTasks($event)" sd-layout-wrap *ngIf="completedTasks?.length > 0">
+                <div sd-layout="row " class="completedTasks fadded " (click)="toggleShowCompletedTasks($event) " sd-layout-wrap *ngIf="completedTasks?.length> 0">
                     <button class="app-icon-button" style="padding-left:14px; pointer-events: none;">
                             <i id="expand_task_icon_1" class="{{lamda}}">keyboard_arrow_right</i>
                     </button>
@@ -56,7 +88,7 @@
                 <div sd-flex *ngIf="showCompetedTasks">
                     <div class="task completed" *ngFor="let taskItem of completedTasks; let i = index; let isOdd=odd; let isEven=even;" (mouseover)="onHover($event, i, true)" (mouseout)="onMouseOut($event, i, true)">
                         <div sd-layout="row" [class.odd]="isOdd" [class.even]="isEven">
-                            <button class="app-icon-button invisible" >
+                            <button class="app-icon-button invisible">
                                 <i class="material-icons">more_vert</i>
                             </button>
                             <md-checkbox sd-flex class="task-checkbox" color="warn" [checked]="taskItem.completed" (change)="itemClicked($event, taskItem)" md-tooltip="Finished On: {{taskItem.completedAt | sddate}}" mdTooltipPosition="above">{{taskItem.title}}</md-checkbox>
@@ -64,6 +96,14 @@
                                 <i class="material-icons">cancel</i>
                             </button>
                         </div>
+                        <md-chip-list sd-flex style="padding-left: 52px;">
+                            <sd-chip *ngIf="taskItem?.dueDate" icon="schedule" readonly [ngModel]="taskItem">
+                                {{taskItem.dueDate | date: 'dd-MMM-yyyy'}}
+                            </sd-chip>
+                            <sd-chip *ngIf="taskItem?.showPercentage" readonly icon="trending_up">
+                                {{taskItem?.percent}}% completed
+                            </sd-chip>
+                        </md-chip-list>
                     </div>
                 </div>
             </div>
@@ -72,19 +112,19 @@
             <!-- Footer -->
             <div class="goal-footer" sd-layout="row">
                 <div sd-layout="row">
-                        <button class="app-icon-button" md-tooltip="Copy" mdTooltipPosition="above" (click)="onCopyGoalEvent($event)" >
+                    <button class="app-icon-button" md-tooltip="Copy" mdTooltipPosition="above" (click)="onCopyGoalEvent($event)">
                             <i class="material-icons">content_copy</i>
                         </button>
-                        <button class="app-icon-button" md-tooltip="Archive" mdTooltipPosition="above"  (click)="onArchiveGoalEvent($event)">
+                    <button class="app-icon-button" md-tooltip="Archive" mdTooltipPosition="above" (click)="onArchiveGoalEvent($event)">
                             <i class="material-icons">archive</i>
                         </button>
-                        <button class="app-icon-button" md-tooltip="Print" mdTooltipPosition="above"  (click)="onPrintGoalEvent($event)">
+                    <button class="app-icon-button" md-tooltip="Print" mdTooltipPosition="above" (click)="onPrintGoalEvent($event)">
                             <i class="material-icons">print</i>
                         </button>
-                        <button class="app-icon-button" md-tooltip="Due Date" mdTooltipPosition="above"  (click)="onScheduleGoalEvent($event)">
+                    <button class="app-icon-button" md-tooltip="Due Date" mdTooltipPosition="above" (click)="onScheduleGoalEvent($event)">
                             <i class="material-icons">schedule</i>
                         </button>
-                        <button class="app-icon-button" md-tooltip="Delete" mdTooltipPosition="above" (click)="onDeleteGoalEvent($event)" >
+                    <button class="app-icon-button" md-tooltip="Delete" mdTooltipPosition="above" (click)="onDeleteGoalEvent($event)">
                             <i class="material-icons">delete</i>
                         </button>
                 </div>
@@ -92,7 +132,8 @@
                 <div sd-layout="row">
                     <button md-button md-tooltip="Save Goal" mdTooltipPosition="above" (click)="onSaveGoalEvent($event)">DONE</button>
                 </div>
-            </div> <!-- Footer End -->
-        </div> 
+            </div>
+            <!-- Footer End -->
+        </div>
     </div>
 </div>

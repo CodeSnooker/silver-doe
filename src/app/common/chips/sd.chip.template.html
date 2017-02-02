@@ -1,0 +1,7 @@
+<div *ngIf="icon" class="chip-icon">
+    <i class="material-icons">{{icon}}</i>
+</div>
+<div class="chip-content">
+    <ng-content></ng-content>
+</div>
+<div *ngIf="!readonly" (click)="closeMe($event)" (mouseenter)="onHover($event, true)" (mouseleave)="onHover($event, false)" class="material-icons sd-close-icon">close</div>

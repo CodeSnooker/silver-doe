@@ -6,6 +6,9 @@ import { CommonModule } from '@angular/common';
 import { FormsModule }   from '@angular/forms';
 import {ToastyModule} from 'ng2-toasty';
 
+// Components 
+import { SDChipsModule } from './chips/index';
+
 // Directives
 import { SDFlexDirective } from './sd.flex.directive';
 import { SDTextAlignCenterDirective } from './sd.text.center.directive';
@@ -19,9 +22,9 @@ import { SDFilterPipe} from './sd.filter.pipe';
 import { SDTruncatePipe } from './sd.truncate.pipe';
 
 @NgModule({
-    imports: [MaterialModule.forRoot(), BrowserModule, CommonModule, FormsModule, ToastyModule.forRoot()],
+    imports: [MaterialModule.forRoot(), BrowserModule, CommonModule, FormsModule, ToastyModule.forRoot(), SDChipsModule],
     declarations: [ SDFlexDirective, SDTextAlignCenterDirective, SDLayoutDirective, SDLayoutWrapDirective, SDDatePipe, SDLayoutAlignRightDirective, SDFilterPipe, SDTruncatePipe],
-    exports: [ SDFlexDirective, SDTextAlignCenterDirective, SDLayoutDirective, SDLayoutWrapDirective, SDDatePipe, MaterialModule, BrowserModule, SDLayoutAlignRightDirective, SDFilterPipe, FormsModule, SDTruncatePipe, ToastyModule ]
+    exports: [ SDFlexDirective, SDTextAlignCenterDirective, SDLayoutDirective, SDLayoutWrapDirective, SDDatePipe, MaterialModule, BrowserModule, SDLayoutAlignRightDirective, SDFilterPipe, FormsModule, SDTruncatePipe, ToastyModule, SDChipsModule ]
 })
 
 export class SDCommonModule { 

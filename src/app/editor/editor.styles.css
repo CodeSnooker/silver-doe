@@ -8,6 +8,11 @@
     left: 0;
 }
 
+.md-slider-horizontal {
+    padding: 0px;
+    margin-top: -16px;
+}
+
 .editor-header {
     background: transparent;
     padding: 16px;
