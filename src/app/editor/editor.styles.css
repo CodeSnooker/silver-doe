@@ -172,3 +172,12 @@ input.new-task:-moz-placeholder {
 .move {
     cursor: move;
 }
+
+.task-handle {
+    display: inline-block;
+}
+
+.no-event {
+    pointer-events: none;
+    padding: 0px;
+}

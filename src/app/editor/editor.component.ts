@@ -5,6 +5,7 @@ import { Task } from './../tasks/task/task.model';
 import { TaskCollection } from './../tasks/task/task.collection.model';
 import { Goal } from './../goalmanager/goal/goal.model';
 import { ToastyService, ToastyConfig, ToastOptions, ToastData } from 'ng2-toasty';
+import { DragulaService } from 'ng2-dragula/ng2-dragula';
 
 
 export function yesterday(): any {
@@ -37,7 +38,8 @@ export class EditorComponent implements OnInit, OnChanges, DoCheck {
 	constructor(private taskService: TaskService,
 		private goalService: GoalService,
 		private toastyService: ToastyService,
-		private toastyConfig: ToastyConfig) {
+		private toastyConfig: ToastyConfig,
+		private dragulaService: DragulaService) {
 
 		this.toastyConfig.theme = 'material';
 		this.toastyConfig.position = 'top-right';
@@ -113,6 +115,12 @@ export class EditorComponent implements OnInit, OnChanges, DoCheck {
 
 	ngOnInit() {
 		this.reBuildTasks();
+
+		this.dragulaService.setOptions('task-bag', {
+			moves: function (el: any, container: any, handle: any) {
+				return handle.className === 'task-handle';
+			}
+		});
 	}
 
 	ngOnChanges(changes: any) {
