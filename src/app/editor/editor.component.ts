@@ -116,11 +116,24 @@ export class EditorComponent implements OnInit, OnChanges, DoCheck {
 	ngOnInit() {
 		this.reBuildTasks();
 
-		this.dragulaService.setOptions('task-bag', {
-			moves: function (el: any, container: any, handle: any) {
-				return handle.className === 'task-handle';
-			}
-		});
+		// this.dragulaService.setOptions('task-bag', {
+		// 	moves: function (el: any, container: any, handle: any) {
+		// 		return handle.className === 'task-handle';
+		// 	}
+		// });
+
+		const bag: any = this.dragulaService.find('task-bag');
+
+        if (bag == undefined) {
+
+            this.dragulaService.setOptions('task-bag', {
+                moves: function (el: any, container: any, handle: any) {
+                    return handle.className === 'task-handle';
+                },
+				 copy: false,
+                 copySortSource: false
+            });
+        }
 	}
 
 	ngOnChanges(changes: any) {

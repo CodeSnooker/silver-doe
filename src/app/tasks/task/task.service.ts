@@ -41,6 +41,14 @@ export class TaskService {
     getTasks(goalID:string): Promise<TaskCollection> {
         return Promise.resolve(TASKS.getTasksForGoal(goalID));
     }
+
+    getTasksByDueDate(date:Date): Promise<TaskCollection> {
+        return Promise.resolve(TASKS.getTasksForDueDate(date));
+    }
+
+    getTaskById(taskID:string): Promise<Task> {
+        return Promise.resolve(TASKS.getTaskById(taskID));
+    }
 }
 
 

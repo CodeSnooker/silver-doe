@@ -1,9 +1,11 @@
 <div sd-flex class="sd-card" (click)="onTapped($event)">
     <sd-planner-header [selectedDate]="selectedDate">Planner Header</sd-planner-header>
     <div class="progress"> </div>
-    <div id="plannerBody" class="planner-body" sd-center>
-        <div sd-flex [dragula]='"task-bag"' style="background: red; height: 100%;">
-            <span>Task Container</span>
+    <div id="plannerBody" class="planner-body">
+        <div sd-flex [dragula]='"task-bag"'>
+            <div *ngFor="let task of tasks; let i = index;">
+                Task #{{i}} => {{task.title}}
+            </div>
         </div>
     </div>
     <planner-footer (onTimeSelection)="onTimeSelectionEvent($event)">Planner Footer</planner-footer>

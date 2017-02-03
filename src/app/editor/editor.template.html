@@ -21,7 +21,7 @@
 
                 <!-- Pending Tasks -->
                 <div id="taskContainer" [dragula]='"task-bag"'>
-                    <div class="task" *ngFor="let taskItem of inCompletedTasks; let i = index; let isOdd=odd; let isEven=even;" (mouseover)="onHover($event, i, false)" (mouseout)="onMouseOut($event, i, false)">
+                    <div id="{{taskItem.id}}" class="task" *ngFor="let taskItem of inCompletedTasks; let i = index; let isOdd=odd; let isEven=even;" (mouseover)="onHover($event, i, false)" (mouseout)="onMouseOut($event, i, false)">
                         <div sd-layout="column" [class.odd]="isOdd" [class.even]="isEven">
                             <div sd-layout="row">
                                 <button id="pending_move_{{i}}" class="app-icon-button invisible anim move" [mdMenuTriggerFor]="menu">
