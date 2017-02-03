@@ -5,7 +5,7 @@ import { Task } from './../tasks/task/task.model';
 import { TaskCollection } from './../tasks/task/task.collection.model';
 import { Goal } from './../goalmanager/goal/goal.model';
 import { ToastyService, ToastyConfig, ToastOptions, ToastData } from 'ng2-toasty';
-import { IMyOptions } from 'mydatepicker';
+
 
 export function yesterday(): any {
 	let date: Date = new Date();
@@ -33,14 +33,6 @@ export class EditorComponent implements OnInit, OnChanges, DoCheck {
 	private showCompetedTasks = false;
 	private lamda = 'material-icons fadded anim zeroDeg';
 
-	private myDatePickerOptions: IMyOptions = {
-		// other options...
-		dateFormat: 'dd.mm.yyyy',
-		showInputField: false,
-		disableUntil: yesterday(),
-		showClearDateBtn: false,
-		openSelectorTopOfInput:true
-	};
 
 	constructor(private taskService: TaskService,
 		private goalService: GoalService,

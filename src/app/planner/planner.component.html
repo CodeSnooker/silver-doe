@@ -1,10 +1,10 @@
 <div sd-flex class="sd-card" (click)="onTapped($event)">
     <sd-planner-header [selectedDate]="selectedDate">Planner Header</sd-planner-header>
     <div class="progress"> </div>
-    <div id="plannerBody" class="planner-body" sd-center> 
-        <div sd-flex >
-            Task Container
+    <div id="plannerBody" class="planner-body" sd-center>
+        <div sd-flex [dragula]='"task-bag"' style="background: red; height: 100%;">
+            <span>Task Container</span>
         </div>
     </div>
-    <planner-footer (onTimeSelection)="onTimeSelectionEvent($event)" >Planner Footer</planner-footer>
+    <planner-footer (onTimeSelection)="onTimeSelectionEvent($event)">Planner Footer</planner-footer>
 </div>

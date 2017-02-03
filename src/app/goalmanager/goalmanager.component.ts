@@ -4,9 +4,9 @@ import { Goal } from './goal/goal.model';
 import { GoalCollection } from './goal/goal.collection.model';
 import { GoalService } from './goal/goal.service';
 import { TaskService } from './../tasks/task/task.service';
-import { Task } from './../tasks/task/task.model'; 
+import { Task } from './../tasks/task/task.model';
 
-@Component ({
+@Component({
     moduleId: module.id,
     selector: 'goal-manager',
     templateUrl: 'goalmanager.component.html',
@@ -16,18 +16,18 @@ import { Task } from './../tasks/task/task.model';
 export class GoalManagerComponent implements OnInit {
 
     private _listGoals: GoalCollection;
-    
-    @Output() goalTappedEmitter = new EventEmitter<void> (); 
 
-    constructor(private goalService:GoalService, private taskService:TaskService) {
+    @Output() goalTappedEmitter = new EventEmitter<void>();
+
+    constructor(private goalService: GoalService, private taskService: TaskService) {
         //this._listGoals = GOALS;
         this._listGoals = new GoalCollection();
     }
 
-    getTasks(goals:GoalCollection) {
+    getTasks(goals: GoalCollection) {
         this._listGoals = goals
-        for (let i=0; i<goals.length; i++) {
-            let goal:Goal = goals[i];
+        for (let i = 0; i < goals.length; i++) {
+            let goal: Goal = goals[i];
             this.taskService.getTasks(goal.id).then(tasks => goal.tasks = tasks);
         }
     }
@@ -40,25 +40,25 @@ export class GoalManagerComponent implements OnInit {
         this.getGoals();
     }
 
-    addGoal(event:any) {
-        let src:any = event.target;
-        let goalName:string = src.value;
+    addGoal(event: any) {
+        let src: any = event.target;
+        let goalName: string = src.value;
 
         goalName = goalName ? goalName : '';
         goalName = goalName.trim();
 
         if (goalName.length > 0) {
-        
-            let newGoal = new Goal({title: goalName});
+
+            let newGoal = new Goal({ title: goalName });
             event.goal = newGoal;
             this.goalTappedEmitter.emit(event);
             this._listGoals.push(newGoal);
         }
-        
+
         src.value = "";
     }
-    
-    editGoal(event:any, goal:Goal) {
+
+    editGoal(event: any, goal: Goal) {
         event.stopPropagation();
         event.goal = goal;
         this.goalTappedEmitter.emit(event);

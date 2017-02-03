@@ -20,6 +20,44 @@
             <div sd-layout="column" style="overflow: scroll;">
 
                 <!-- Pending Tasks -->
+                <div id="taskContainer" [dragula]='"task-bag"'>
+                    <div class="task" *ngFor="let taskItem of inCompletedTasks; let i = index; let isOdd=odd; let isEven=even;" (mouseover)="onHover($event, i, false)" (mouseout)="onMouseOut($event, i, false)">
+                        <div sd-layout="column" [class.odd]="isOdd" [class.even]="isEven">
+                            <div sd-layout="row">
+                                <button id="pending_move_{{i}}" class="app-icon-button invisible anim move" [mdMenuTriggerFor]="menu">
+                                <i class="material-icons">more_vert</i>
+                            </button>
+                                <md-checkbox sd-flex class="task-checkbox" color="warn" [checked]="taskItem.completed" (change)="itemClicked($event, taskItem)">{{taskItem.title}}</md-checkbox>
+                                <button id="pending_delete_{{i}}" class="app-icon-button cancel-task invisible anim" (click)="deleteTask(taskItem)" md-tooltip="Delete" mdTooltipPosition="above">
+                                <i class="material-icons">cancel</i>
+                            </button>
+
+
+                                <md-menu #menu="mdMenu">
+                                    <button md-menu-item *ngIf="!taskItem?.showPercentage" (click)="addProgress(taskItem)">
+                                    <md-icon>trending_up</md-icon>
+                                    <span>Set Progress</span>
+                                </button>
+                                    <button md-menu-item *ngIf="taskItem?.showPercentage" (click)="removeProgress(taskItem)">
+                                    <md-icon>remove_circle_outline</md-icon>
+                                    <span>Remove Progress</span>
+                                </button>
+                                </md-menu>
+                            </div>
+
+                            <md-chip-list sd-flex class="editor-chip-list">
+                                <sd-chip *ngIf="taskItem?.dueDate" icon="alarm_on" (close)="removeDueDateFromTask($event)" [ngModel]="taskItem">
+                                    {{taskItem.dueDate | date: 'dd-MMM-yyyy'}}
+                                </sd-chip>
+                                <sd-chip *ngIf="taskItem.showPercentage" icon="trending_up" (close)="removeProgressFromTask($event)" [ngModel]="taskItem">
+                                    <md-slider [(ngModel)]="taskItem.percent" thumb-label="true"></md-slider>
+                                </sd-chip>
+                            </md-chip-list>
+                        </div>
+                    </div>
+                </div>
+
+                <!--
                 <div class="task" *ngFor="let taskItem of inCompletedTasks; let i = index; let isOdd=odd; let isEven=even;" (mouseover)="onHover($event, i, false)" (mouseout)="onMouseOut($event, i, false)" dnd-sortable-container [dropZones]="['pending-zone']" [sortableData]="inCompletedTasks">
                     <div sd-layout="column" dnd-sortable [sortableIndex]="i" [class.odd]="isOdd" [class.even]="isEven">
                         <div sd-layout="row">
@@ -31,7 +69,7 @@
                                 <i class="material-icons">cancel</i>
                             </button>
 
-                            <!-- Context Menu -->
+                            
                             <md-menu #menu="mdMenu">
                                 <button md-menu-item *ngIf="!taskItem?.showPercentage" (click)="addProgress(taskItem)">
                                     <md-icon>trending_up</md-icon>
@@ -53,9 +91,8 @@
                             </sd-chip>
                         </md-chip-list>
                     </div>
-
-
                 </div>
+                -->
 
                 <!-- Add New Task -->
                 <div sd-layout=" row " class="task ">

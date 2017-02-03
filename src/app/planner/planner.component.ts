@@ -8,8 +8,8 @@ import { Component } from '@angular/core';
 })
 
 export class PlannerComponent {
-    
-    static readonly millisecondsInADay:number = 86400000;
+
+    static readonly millisecondsInADay: number = 86400000;
     today: Date;
     selectedDate: Date;
 
@@ -26,4 +26,4 @@ export class PlannerComponent {
     onTapped(event: any) {
         event.stopPropagation();
     }
- }
+}
