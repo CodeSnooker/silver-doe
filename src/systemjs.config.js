@@ -24,6 +24,10 @@
             '@angular/forms': 'npm:@angular/forms/bundles/forms.umd.js',
             '@angular/material': 'npm:@angular/material/bundles/material.umd.js',
 
+            // Firebase
+            'angularfire2': 'npm:angularfire2',
+            'firebase': 'npm:firebase',
+
             // other libraries
             'rxjs': 'npm:rxjs',
             'angular-in-memory-web-api': 'npm:angular-in-memory-web-api/bundles/in-memory-web-api.umd.js',
@@ -56,6 +60,16 @@
             'ticky': { main: 'ticky.js', defaultExtension: 'js' },
             'crossvent': { main: 'crossvent.js', defaultExtension: 'js' },
             'custom-event': { main: 'index.js', defaultExtension: 'js' },
+
+
+            'angularfire2': {
+                defaultExtension: 'js',
+                main: './angularfire2.js'
+            },
+            'firebase': {
+                defaultExtension: 'js',
+                main: './firebase.js'
+            }
         }
     });
 })(this);

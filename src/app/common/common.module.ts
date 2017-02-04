@@ -6,6 +6,8 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { ToastyModule } from 'ng2-toasty';
 import { DragulaModule } from 'ng2-dragula/ng2-dragula';
+import { AngularFireModule } from 'angularfire2';
+
 
 // Components 
 import { SDChipsModule } from './chips/index';
@@ -22,6 +24,14 @@ import { SDDatePipe } from './sd.date.pipe';
 import { SDFilterPipe } from './sd.filter.pipe';
 import { SDTruncatePipe } from './sd.truncate.pipe';
 
+export const firebaseConfig = {
+    apiKey: "AIzaSyD9taKu2o17RAEkKz4y2UlfrFriaVhbrSw",
+    authDomain: "silver-doe.firebaseapp.com",
+    databaseURL: "https://silver-doe.firebaseio.com",
+    storageBucket: "silver-doe.appspot.com",
+    messagingSenderId: "969629471883"
+};
+
 @NgModule({
     imports: [
         MaterialModule.forRoot(),
@@ -30,7 +40,8 @@ import { SDTruncatePipe } from './sd.truncate.pipe';
         FormsModule,
         ToastyModule.forRoot(),
         SDChipsModule,
-        DragulaModule],
+        DragulaModule,
+        AngularFireModule.initializeApp(firebaseConfig)],
     declarations: [
         SDFlexDirective,
         SDTextAlignCenterDirective,
