@@ -1,0 +1,11 @@
+<div class="form-container" id="toolbar">
+    <header [@fallIn]="state">
+        <button (click)="logout()" class="basic-btn">Logout</button>
+    </header>
+    <div id="page" [@moveInLeft]="state">
+        <h2>Hey {{ name.auth.displayName }}!</h2>
+
+        <md-icon style="font-size: 256px;" disabled>format_align_left</md-icon>
+    </div>
+
+</div>

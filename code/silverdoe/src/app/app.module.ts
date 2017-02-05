@@ -14,19 +14,30 @@ import { FirebaseModule } from './firebase';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 
+// Routes
+import { AppRoutes } from './app.routes';
+import { HomeComponent } from './home/home.component';
+
+// Services
+import { AuthGuard } from './services/auth.service';
+
 @NgModule({
   declarations: [
     AppComponent,
-    LoginComponent
+    LoginComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     HttpModule,
     FirebaseModule,
-    MaterialModule.forRoot()
+    MaterialModule.forRoot(),
+    AppRoutes
   ],
-  providers: [],
+  providers: [
+    AuthGuard
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
