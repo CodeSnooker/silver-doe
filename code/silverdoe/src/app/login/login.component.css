@@ -1,0 +1,43 @@
+#fb {
+    background: #3B5998 url('assets/images/facebook.svg') no-repeat 14px 6px;
+    background-size: 47px;
+    color: #fff;
+    font-size: 1.3em;
+    cursor: pointer;
+    padding: 1.2em;
+    width: 100%;
+}
+
+#logo {
+    padding: 1.2em;
+}
+
+.form-container {
+    background: white;
+    padding: 3.5em;
+    width: 500px;
+    height: 100%;
+    position: fixed;
+    left: 50%;
+    margin-left: -250px;
+    text-align: center;
+}
+
+.title {
+    color: #4A4A4A;
+    font-size: 48px;
+}
+
+.sub-title {
+    color: #FF2400;
+    font-size: 18px;
+}
+
+@media (max-width: 600px) {
+    #fb {
+        background: #3B5998;
+    }
+    .sub-title {
+        font-size: 18px;
+    }
+}

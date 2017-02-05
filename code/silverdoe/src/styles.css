@@ -1,7 +1,22 @@
 /* You can add global styles to this file, and also import other style files */
 
+@import url(https://fonts.googleapis.com/css?family=Roboto:100,100italic,300,300italic,400,400italic,500,500italic,700,700italic,900,900italic&subset=latin,latin-ext,cyrillic,cyrillic-ext,greek-ext,greek,vietnamese);
 
 /* @import '~@angular/material/core/theming/prebuilt/deeppurple-amber.css'; */
+
+html,
+body {
+    margin: 0px;
+    height: 100%;
+    width: 100%;
+    background-color: #E2E4E6;
+    font-family: 'Roboto', sans-serif;
+}
+
+.font-light {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 100;
+}
 
 .loading {
     width: 30px;
@@ -30,4 +45,12 @@
     100% {
         transform: rotate(360deg);
     }
+}
+
+.error {
+    background: #f1f0ef;
+    padding: 1em;
+    width: 100%;
+    display: block;
+    margin-bottom: 20px;
 }

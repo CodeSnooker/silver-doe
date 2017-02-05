@@ -3,6 +3,8 @@ import { AngularFire, AuthProviders, AuthMethods } from 'angularfire2';
 import { Router } from '@angular/router';
 import { moveIn } from './../router.animations';
 
+import { MdSnackBar } from '@angular/material';
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -15,7 +17,7 @@ export class LoginComponent implements OnInit {
 
   error: any;
 
-  constructor(public af: AngularFire, private router: Router) {
+  constructor(public af: AngularFire, private router: Router, public snackBar: MdSnackBar) {
 
     this.af.auth.subscribe(auth => {
       if (auth) {
@@ -34,12 +36,18 @@ export class LoginComponent implements OnInit {
       }).catch(
       (err) => {
         this.error = err;
+        this.toastError();
       })
   }
 
   ngOnInit() {
   }
 
+  toastError() {
 
+    this.snackBar.open(this.error, "OK", {
+      duration: 5000,
+    });
+  }
 
 }
