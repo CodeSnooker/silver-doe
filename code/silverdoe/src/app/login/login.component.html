@@ -1,7 +1,11 @@
-<div class="form-container">
-    <img id="logo" src="assets/images/silver_doe.svg" style="color:greenyellow;">
-    <h1 class="font-light title">SILVER DOE</h1>
-    <h6 class="sub-title">This is some inspiration text for chasing goals</h6>
-    <!-- <span class="error" *ngIf="error">{{ error }}</span> -->
-    <button (click)="loginFb()" id="fb">Login With Facebook</button><br>
+<div sd-layout="column" class="form-container">
+    <div sd-flex="60" id="logo"></div>
+    <span sd-flex="10" class="title">SILVER DOE</span>
+    <span sd-flex="10" class="sub-title">An Online Planner</span>
+    <div sd-flex="15">
+        <button (click)="loginFb()" id="fb" md-button>Login With Facebook</button><br>
+    </div>
+    <div sd-flex="5" class="quote">
+        Sometimes, you’ve got to work a little, so you can ball a lot. - <i>Tom Haverford</i>
+    </div>
 </div>

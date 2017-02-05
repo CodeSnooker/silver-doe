@@ -10,6 +10,9 @@ import 'hammerjs';
 // Firebase
 import { FirebaseModule } from './firebase';
 
+// Modules
+import { SdCommonModule } from './sd-common';
+
 // Silver Doe components
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
@@ -25,7 +28,7 @@ import { AuthGuard } from './services/auth.service';
   declarations: [
     AppComponent,
     LoginComponent,
-    HomeComponent
+    HomeComponent,
   ],
   imports: [
     BrowserModule,
@@ -33,7 +36,8 @@ import { AuthGuard } from './services/auth.service';
     HttpModule,
     FirebaseModule,
     MaterialModule.forRoot(),
-    AppRoutes
+    AppRoutes,
+    SdCommonModule
   ],
   providers: [
     AuthGuard
