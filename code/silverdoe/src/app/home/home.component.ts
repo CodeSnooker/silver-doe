@@ -9,12 +9,15 @@ import { moveIn, fallIn, moveInLeft } from '../router.animations';
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css'],
   animations: [moveIn(), fallIn(), moveInLeft()],
-  host: {'[@moveIn]': ''}
+  host: { '[@moveIn]': '' }
 })
 export class HomeComponent implements OnInit {
 
   name: any;
   state: string = '';
+  private _textToSearch: string = '';
+
+  private _searchActive: boolean = false;
 
   constructor(public af: AngularFire, private router: Router) {
 
@@ -31,8 +34,36 @@ export class HomeComponent implements OnInit {
     console.log('logged out');
     this.router.navigateByUrl('/login');
   }
-  
+
   ngOnInit() {
+  }
+
+  /**
+   * Call this function when user press escape button or press on close search button
+   */
+  closeSearch() {
+    this._searchActive = false;
+    this._textToSearch = '';
+  }
+
+  openSearch() {
+    this._searchActive = true;
+  }
+
+  handleEscape() {
+    this.closeSearch();
+  }
+
+  /**
+   * Performs search on the todo list when user press any key in search box
+   */
+  performSearch($event: Event) {
+
+    this._searchActive = this._textToSearch.length > 0; 
+
+    if (this._textToSearch.length > 3) {
+      // Perform the search
+    }
   }
 
 }

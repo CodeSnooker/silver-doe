@@ -1,0 +1,84 @@
+:host,
+md-sidenav-layout {
+    width: 100%;
+    height: 100%;
+    color: #142031;
+}
+
+md-sidenav {
+    min-width: 270px
+}
+
+.app-content {
+    width: 100%;
+    height: calc(100% - 64px);
+    background: lime;
+}
+
+.nav-title {
+    font-size: 29px;
+    line-height: 48px;
+    font-weight: 300;
+    padding-left: 4px;
+}
+
+.search {
+    height: 48px;
+    background: rgba(0, 0, 0, 0.04);
+    border-radius: 2px;
+    font-size: 11px;
+}
+
+.search-input {
+    outline: none;
+    border: none;
+    height: 48px;
+    background: transparent;
+    font: normal 18px Roboto, sans-serif;
+}
+
+.search-input::-webkit-input-placeholder {
+    /* Chrome/Opera/Safari */
+    color: rgba(0, 0, 0, 0.5);
+}
+
+.search-input::-moz-placeholder {
+    /* Firefox 19+ */
+    color: rgba(0, 0, 0, 0.5);
+}
+
+.search-input:-ms-input-placeholder {
+    /* IE 10+ */
+    color: rgba(0, 0, 0, 0.5);
+}
+
+.search-input:-moz-placeholder {
+    /* Firefox 18- */
+    color: rgba(0, 0, 0, 0.5);
+}
+
+.search-icon,
+.close-icon {
+    font-size: 32px;
+    line-height: 48px;
+    padding-left: 16px;
+    padding-right: 16px;
+    color: rgba(0, 0, 0, 0.65);
+    font-weight: 300;
+}
+
+#right-menu>button {
+    padding-left: 16px;
+    color: rgba(0, 0, 0, 0.65);
+}
+
+#right-menu>button:hover,
+.close-icon:hover {
+    color: black;
+}
+
+@media only screen and (max-width:600px) {
+    .search {
+        display: none !important;
+    }
+}

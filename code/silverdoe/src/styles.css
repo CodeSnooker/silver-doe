@@ -54,3 +54,13 @@ body {
     display: block;
     margin-bottom: 20px;
 }
+
+button {
+    outline: none;
+}
+
+button>.material-icons,
+button>md-icon {
+    padding: 4px;
+    cursor: pointer;
+}
