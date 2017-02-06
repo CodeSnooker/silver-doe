@@ -3,6 +3,8 @@ import { CommonModule } from '@angular/common';
 
 import { SDLayoutDirective } from './sdlayout.directive';
 import { SDFlexDirective } from './sdflex.directive';
+import { AutofocusDirective } from './autofocus.directive';
+
 
 @NgModule({
   imports: [
@@ -10,11 +12,13 @@ import { SDFlexDirective } from './sdflex.directive';
   ],
   declarations: [
     SDLayoutDirective,
-    SDFlexDirective
+    SDFlexDirective,
+    AutofocusDirective
   ],
   exports: [
     SDLayoutDirective,
-    SDFlexDirective
+    SDFlexDirective,
+    AutofocusDirective
   ]
 })
 export class SdCommonModule { }
