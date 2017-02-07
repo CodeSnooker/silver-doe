@@ -78,6 +78,13 @@ md-sidenav {
     color: black;
 }
 
+.flex-panel {
+    margin: 5px;
+    display: flex;
+    border: 1px solid black;
+    background: green;
+}
+
 @media only screen and (max-width: 600px) {
     .search {
         display: none !important;
@@ -108,4 +115,39 @@ md-sidenav {
     .app-content {
         height: calc(100% - 56px);
     }
+}
+
+.masonry-layout {
+    column-count: 3;
+    -webkit-column-count: 3;
+    column-gap: 0;
+    -webkit-column-gap: 0;
+}
+
+.masonry-layout__panel {
+    break-inside: avoid;
+    -webkit-column-break-inside: avoid;
+    padding: 5px;
+}
+
+.masonry-layout__panel-content {
+    padding: 10px;
+    border-radius: 10px;
+    border: 1px solid black;
+}
+
+.bg--red {
+    background-color: #E74C3C;
+}
+
+.bg--green {
+    background-color: #26A65B;
+}
+
+.bg--purple {
+    background-color: #8E44AD;
+}
+
+.bg--orange {
+    background-color: #F89406;
 }

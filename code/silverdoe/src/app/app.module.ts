@@ -2,6 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
+import { DragulaModule } from 'ng2-dragula';
 
 // For Material 
 import { MaterialModule } from '@angular/material';
@@ -37,7 +38,8 @@ import { AuthGuard } from './services/auth.service';
     FirebaseModule,
     MaterialModule.forRoot(),
     AppRoutes,
-    SdCommonModule
+    SdCommonModule,
+    DragulaModule
   ],
   providers: [
     AuthGuard

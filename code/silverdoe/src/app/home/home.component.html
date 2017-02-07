@@ -19,7 +19,7 @@
         </div>
         <div sd-layout="row" id="right-menu">
             <button (click)="sidenav.toggle()" sd-flex="50">
-                <i class="material-icons">work</i>
+                <i class="material-icons">view_stream</i>
             </button>
             <button [mdMenuTriggerFor]="menu" sd-flex="50">
                 <i class="material-icons">account_circle</i>
@@ -32,21 +32,34 @@
 
     </md-toolbar>
 
-    <div class="app-content">
-        <div class="planner-container">
+    <div class="app-content" style="overflow: scroll;">
+
+        <div class="masonry-layout" [dragula]='"bag-one"'>
+            <div class="masonry-layout__panel" *ngFor="let data of _bagList; let i = index">
+                <div class="masonry-layout__panel-content">
+                    Data => {{data.text}}
+                </div>
+            </div>
         </div>
+
+        <!--
+        <div sd-layout="row" style="background: red; padding: 16px; text-align: center; overflow: scroll;">
+            <div sd-layout="column" style="flex: 1; margin: 10px;" [dragula]='"bag-one"'>
+                <div *ngFor="let data of _bagList; let i = index;" class="flex-panel">
+                    {{data.text}}
+                </div>
+            </div>
+            <div sd-layout="column" style="flex: 1; margin: 10px;" [dragula]='"bag-one"'>
+                <div *ngFor="let data of _bagList; let i = index;" class="flex-panel">
+                    {{data.text}}
+                </div>
+            </div>
+            <div sd-layout="column" style="flex: 1; margin: 10px;" [dragula]='"bag-one"'>
+                <div *ngFor="let data of _bagList; let i = index;" class="flex-panel">
+                    {{data.text}}
+                </div>
+            </div>
+        </div>
+        -->
     </div>
 </md-sidenav-layout>
-
-<!-- 
-<div class="form-container" id="toolbar">
-    <header [@fallIn]="state">
-        <button (click)="logout()" class="basic-btn">Logout</button>
-    </header>
-    <div id="page" [@moveInLeft]="state">
-        <h2>Hey {{ name.auth.displayName }}!</h2>
-
-        <md-icon style="font-size: 256px;" disabled>format_align_left</md-icon>
-    </div>
-</div>
--->
