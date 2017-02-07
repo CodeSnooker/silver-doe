@@ -85,38 +85,6 @@ md-sidenav {
     background: green;
 }
 
-@media only screen and (max-width: 600px) {
-    .search {
-        display: none !important;
-    }
-}
-
-@media only screen and (min-width: 600px) and (max-width: 960px) {
-    .search,
-    .search-input {
-        height: 40px;
-    }
-    .search-icon,
-    .close-icon {
-        font-size: 28px;
-        line-height: 40px;
-    }
-}
-
-@media only screen and (max-width: 960px) and (min-width:593px) {
-    .app-content {
-        height: calc(100% - 48px);
-    }
-}
-
-@media only screen and (max-width: 768px) {}
-
-@media only screen and (max-width:593px) {
-    .app-content {
-        height: calc(100% - 56px);
-    }
-}
-
 .masonry-layout {
     column-count: 3;
     -webkit-column-count: 3;
@@ -150,4 +118,40 @@ md-sidenav {
 
 .bg--orange {
     background-color: #F89406;
+}
+
+@media only screen and (max-width: 600px) {
+    .search {
+        display: none !important;
+    }
+    .masonry-layout {
+        column-count: 2;
+        -webkit-column-count: 2;
+    }
+}
+
+@media only screen and (min-width: 600px) and (max-width: 960px) {
+    .search,
+    .search-input {
+        height: 40px;
+    }
+    .search-icon,
+    .close-icon {
+        font-size: 28px;
+        line-height: 40px;
+    }
+}
+
+@media only screen and (max-width: 960px) and (min-width:593px) {
+    .app-content {
+        height: calc(100% - 48px);
+    }
+}
+
+@media only screen and (max-width: 768px) {}
+
+@media only screen and (max-width:593px) {
+    .app-content {
+        height: calc(100% - 56px);
+    }
 }
