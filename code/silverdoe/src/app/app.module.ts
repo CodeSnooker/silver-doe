@@ -24,6 +24,7 @@ import { HomeComponent } from './home/home.component';
 
 // Services
 import { AuthGuard } from './services/auth.service';
+import { GoalsService } from './shared/model/goals.service';
 
 @NgModule({
   declarations: [
@@ -42,7 +43,8 @@ import { AuthGuard } from './services/auth.service';
     DragulaModule
   ],
   providers: [
-    AuthGuard
+    AuthGuard,
+    GoalsService
   ],
   bootstrap: [AppComponent]
 })

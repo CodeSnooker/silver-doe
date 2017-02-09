@@ -34,12 +34,18 @@
 
     <div class="app-content" style="overflow: scroll;">
 
-        <div class="masonry-layout" [dragula]='"bag-one"'>
-            <div class="masonry-layout__panel" *ngFor="let data of _bagList; let i = index">
+        <button (click)="addNewGoal()" md-button>Add New Goal!</button>
+
+        <div class="masonry-layout" [dragula]='"bag-one"' [dragulaModel]='goals'>
+            <div class="masonry-layout__panel" *ngFor="let data of goals; let i=index;">
                 <div class="masonry-layout__panel-content">
-                    <b>Data #{{i+1}}</b> => <br> {{data.text}}
+                    <b>Goal #{{i}} {{data.title}} </b>
+                    <br> created At:{{ data.createdAt }}
+                    <br> Priority: {{data.priority}}
+                    <button md-button (click)="removeGoal(data)" color="warn">Delete Me</button>
                 </div>
             </div>
         </div>
+
     </div>
 </md-sidenav-layout>

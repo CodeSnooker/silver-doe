@@ -4,6 +4,11 @@ import { Router } from '@angular/router';
 import { moveIn, fallIn, moveInLeft } from '../router.animations';
 import { DragulaService } from 'ng2-dragula/ng2-dragula';
 
+import { Goal, GoalInterface } from './../shared/model/goal';
+import { GoalsService } from './../shared/model/goals.service';
+import { Observable } from 'rxjs/Observable';
+import { FirebaseListObservable } from 'angularfire2';
+
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -13,6 +18,8 @@ import { DragulaService } from 'ng2-dragula/ng2-dragula';
   viewProviders: [DragulaService]
 })
 export class HomeComponent implements OnInit {
+
+
 
   name: any;
   state: string = '';
@@ -37,16 +44,66 @@ export class HomeComponent implements OnInit {
 
 
   private _searchActive: boolean = false;
+  private goals: Array<GoalInterface>;
 
-  constructor(public af: AngularFire, private router: Router) {
+  constructor(public af: AngularFire, private router: Router, private goalsService: GoalsService, private dragulaService: DragulaService) {
+
+    dragulaService.setOptions('bag-one', {
+
+    });
 
     this.af.auth.subscribe(auth => {
       if (auth) {
         this.name = auth;
         console.log(auth.auth.photoURL);
+        goalsService.findAllGoals().subscribe(goals => {
+          this.goals = [];
+          for (let goal of goals) {
+            this.goals.push(goal);
+          }
+          console.log("Goals: => ", this.goals);
+        });
       }
     });
 
+    // dragulaService.dragend.subscribe(() => {
+    //   this.updatePriorityForGoals();
+    // });
+
+    // this.dragulaService.dropModel.subscribe((data: any) => {
+    //   console.log('Data changed: ', data);
+    // });
+
+    dragulaService.drop.subscribe((value) => {
+      setTimeout(() => {
+        this.updatePriorityForGoals();          
+      }, 10);
+    });
+
+  }
+
+  updatePriorityForGoals() {
+    this.goals.forEach((goal, index) => {
+      if (goal.priority !== index) {
+        this.updateGoal(goal, index);
+      }
+    })
+  }
+
+  updateGoal(goal: Goal, index: number): any {
+    this.goalsService.updateGoal(goal, {
+      priority: index
+    }).then(results => {
+    });
+  }
+
+  addNewGoal() {
+    this.goalsService.createNewGoal('Test Goal_' + Math.random());
+  }
+
+  removeGoal(goal: Goal) {
+    console.log('Going to remove goal: ', goal);
+    this.goalsService.removeGoal(goal);
   }
 
   logout() {
