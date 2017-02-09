@@ -1,5 +1,4 @@
 import { Task } from './task';
-import { Observable } from 'rxjs/Rx';
 
 export interface GoalInterface {
     $key?: string,
@@ -25,7 +24,7 @@ export class Goal implements GoalInterface {
         this.createdAt = new Date().getTime();
     }
 
-    static fromJson({$key, title, archived, createdAt, dueBy, priority}) {
+    static fromJson({$key, title, archived, createdAt, dueBy, priority}) : Goal {
         let tempGoal: Goal = new Goal(title);
         tempGoal.archived = archived;
         tempGoal.createdAt = createdAt;

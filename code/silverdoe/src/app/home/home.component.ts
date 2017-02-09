@@ -5,7 +5,11 @@ import { moveIn, fallIn, moveInLeft } from '../router.animations';
 import { DragulaService } from 'ng2-dragula/ng2-dragula';
 
 import { Goal, GoalInterface } from './../shared/model/goal';
+import { Task, TaskInterface } from './../shared/model/task';
+
 import { GoalsService } from './../shared/model/goals.service';
+import { TasksService } from './../shared/model/tasks.service';
+
 import { Observable } from 'rxjs/Observable';
 import { FirebaseListObservable } from 'angularfire2';
 
@@ -46,7 +50,11 @@ export class HomeComponent implements OnInit {
   private _searchActive: boolean = false;
   private goals: Array<GoalInterface>;
 
-  constructor(public af: AngularFire, private router: Router, private goalsService: GoalsService, private dragulaService: DragulaService) {
+  constructor(public af: AngularFire,
+    private router: Router,
+    private goalsService: GoalsService,
+    private dragulaService: DragulaService,
+    private tasksService: TasksService) {
 
     dragulaService.setOptions('bag-one', {
 
@@ -76,7 +84,7 @@ export class HomeComponent implements OnInit {
 
     dragulaService.drop.subscribe((value) => {
       setTimeout(() => {
-        this.updatePriorityForGoals();          
+        this.updatePriorityForGoals();
       }, 10);
     });
 
@@ -104,6 +112,10 @@ export class HomeComponent implements OnInit {
   removeGoal(goal: Goal) {
     console.log('Going to remove goal: ', goal);
     this.goalsService.removeGoal(goal);
+  }
+
+  addNewTask(goal: Goal) {
+    this.tasksService.createNewTaskForGoal('Test Task_' + Math.random(), goal.$key);
   }
 
   logout() {

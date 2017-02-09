@@ -25,6 +25,7 @@ import { HomeComponent } from './home/home.component';
 // Services
 import { AuthGuard } from './services/auth.service';
 import { GoalsService } from './shared/model/goals.service';
+import { TasksService } from './shared/model/tasks.service';
 
 @NgModule({
   declarations: [
@@ -44,7 +45,8 @@ import { GoalsService } from './shared/model/goals.service';
   ],
   providers: [
     AuthGuard,
-    GoalsService
+    GoalsService,
+    TasksService
   ],
   bootstrap: [AppComponent]
 })

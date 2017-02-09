@@ -2,20 +2,19 @@ import { Injectable } from '@angular/core';
 import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2';
 import { Observable } from 'rxjs/Rx';
 import { Goal, GoalInterface } from './goal';
+import { Task, TaskInterface } from './task';
+import { TasksService } from './tasks.service';
 import { FirebaseListFactoryOpts } from 'angularfire2/interfaces';
 
 
 @Injectable()
 export class GoalsService {
 
-  visibleTasks$: FirebaseListObservable<GoalInterface[]>;
   private _goals$: FirebaseListObservable<GoalInterface[]>;
 
-  constructor(private db: AngularFireDatabase) {
+  constructor(private db: AngularFireDatabase, private tasksService:TasksService) {
     const path = `/goals`;
     this._goals$ = db.list(path);
-    this.visibleTasks$ = db.list(path);
-
   }
 
   findAllGoals(): Observable<GoalInterface[]> {
@@ -24,6 +23,10 @@ export class GoalsService {
         orderByChild: 'priority'
       }
     }).map(Goal.fromJsonArray);
+  }
+
+  getTasksForGoal(): Observable<TaskInterface[]> {
+    return null;
   }
 
   createNewGoal(title: string) {
@@ -36,6 +39,10 @@ export class GoalsService {
 
   updateGoal(goal: GoalInterface, changes: any): firebase.Promise<any> {
     return this._goals$.update(goal.$key, changes);
+  }
+
+  findTasksForGoal(goal:Goal):Observable<TaskInterface[]>{
+    return this.tasksService.getTasksForGoal(goal.$key);
   }
 
 }
