@@ -67,6 +67,7 @@ export class HomeComponent implements OnInit {
         goalsService.findAllGoals().subscribe(goals => {
           this.goals = [];
           for (let goal of goals) {
+            
             this.goals.push(goal);
           }
           console.log("Goals: => ", this.goals);

@@ -26,12 +26,22 @@ import { HomeComponent } from './home/home.component';
 import { AuthGuard } from './services/auth.service';
 import { GoalsService } from './shared/model/goals.service';
 import { TasksService } from './shared/model/tasks.service';
+import { TaskComponent } from './task/task.component';
+import { GoalComponent } from './goal/goal.component';
+import { TaskListComponent } from './task-list/task-list.component';
+import { GoalListComponent } from './goal-list/goal-list.component';
+import { PlannerComponent } from './planner/planner.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     HomeComponent,
+    TaskComponent,
+    GoalComponent,
+    TaskListComponent,
+    GoalListComponent,
+    PlannerComponent,
   ],
   imports: [
     BrowserModule,
