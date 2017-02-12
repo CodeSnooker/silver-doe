@@ -31,6 +31,7 @@ import { GoalComponent } from './goal/goal.component';
 import { TaskListComponent } from './task-list/task-list.component';
 import { GoalListComponent } from './goal-list/goal-list.component';
 import { PlannerComponent } from './planner/planner.component';
+import { NewGoalComponent } from './new-goal/new-goal.component';
 
 @NgModule({
   declarations: [
@@ -42,6 +43,7 @@ import { PlannerComponent } from './planner/planner.component';
     TaskListComponent,
     GoalListComponent,
     PlannerComponent,
+    NewGoalComponent,
   ],
   imports: [
     BrowserModule,

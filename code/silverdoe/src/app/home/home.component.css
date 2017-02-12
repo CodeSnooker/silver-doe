@@ -3,7 +3,7 @@ md-sidenav-layout {
     width: 100%;
     height: 100%;
     color: #142031;
-    background: red;
+    background: #4A4A4A;
 }
 
 md-sidenav {
@@ -13,7 +13,7 @@ md-sidenav {
 .app-content {
     width: 100%;
     height: calc(100% - 64px);
-    background: lime;
+    /*  background: lime; */
 }
 
 .nav-title {

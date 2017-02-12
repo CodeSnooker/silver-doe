@@ -38,13 +38,16 @@
 
         <div class="masonry-layout" [dragula]='"bag-one"' [dragulaModel]='goals'>
             <div class="masonry-layout__panel" *ngFor="let data of goals; let i=index;">
-                <div class="masonry-layout__panel-content">
+
+                <app-goal [goal]="data">App Goal</app-goal>
+                <!--
                     <b>Goal #{{i}} {{data.title}} </b>
                     <br> created At:{{ data.createdAt }}
                     <br> Priority: {{data.priority}}
                     <button md-button (click)="removeGoal(data)" color="warn">Delete Me</button>
                     <button (click)="addNewTask(data)" md-button>Add New Task!</button>
-                </div>
+                    -->
+
             </div>
         </div>
 

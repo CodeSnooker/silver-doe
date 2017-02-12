@@ -1,0 +1,43 @@
+.sd-goal-header {
+    border-top-left-radius: 2px;
+    border-top-right-radius: 2px;
+    max-height: 52px;
+    padding: 16px;
+    background-color: #E8E8E8;
+    cursor: pointer;
+}
+
+.sd-goal-header>h1 {
+    font-size: 22px;
+    line-height: 28px;
+    margin: 0px 5px 8px 10px;
+    margin: 0px;
+    font-weight: 300;
+    color: #404040 !important;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+.sd-goal-footer {
+    background: #D8D8D8;
+    padding: 8px;
+    text-align: center;
+    justify-content: space-between;
+    position: relative;
+    bottom: 0px;
+    border-bottom-left-radius: 2px;
+    border-bottom-right-radius: 2px;
+}
+
+.sd-goal-footer>div>button>.material-icons {
+    color: #757575;
+    font-size: 24px;
+    outline: none;
+    padding: 4px;
+}
+
+.sd-goal-footer>div>button>.material-icons:hover {
+    color: #4A4A4A;
+    outline: none;
+}

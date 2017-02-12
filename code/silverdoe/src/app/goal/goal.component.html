@@ -1,3 +1,38 @@
-<p>
-  goal works!
-</p>
+<div class="sd-card">
+
+    <!-- Title -->
+    <div class="sd-goal-header">
+        <h1>{{goal.title}}</h1>
+    </div>
+
+    <!-- Progress Bar -->
+    <md-progress-bar value="50"></md-progress-bar>
+
+    <app-task-list></app-task-list>
+
+    <div class="sd-goal-body">
+        <br> Priority: {{goal.priority}}
+    </div>
+
+    <!-- Footer -->
+    <div class="sd-goal-footer" sd-layout="row">
+        <div sd-layout="row">
+            <button md-tooltip="Copy" mdTooltipPosition="above" (click)="onCopyEvent($event)">
+                <i class="material-icons">content_copy</i>
+            </button>
+            <button md-tooltip="Archive" mdTooltipPosition="above" (click)="onArchiveEvent($event)">
+                <i class="material-icons">archive</i>
+            </button>
+            <button md-tooltip="Print" mdTooltipPosition="above" (click)="onPrintEvent($event)">
+                <i class="material-icons">print</i>
+            </button>
+        </div>
+        <div sd-flex></div>
+        <div sd-layout="row">
+            <button md-tooltip="Delete" mdTooltipPosition="above" (click)="onDeleteEvent($event)">
+            <i class="material-icons">delete</i>
+    </button>
+        </div>
+    </div>
+
+</div>
