@@ -12,17 +12,24 @@ export class GoalsService {
 
   private _goals$: FirebaseListObservable<GoalInterface[]>;
 
-  constructor(private db: AngularFireDatabase, private tasksService:TasksService) {
+  constructor(private db: AngularFireDatabase, private tasksService: TasksService) {
     const path = `/goals`;
     this._goals$ = db.list(path);
   }
 
   findAllGoals(): Observable<GoalInterface[]> {
-    return this.db.list('goals', {
+    let test: Observable<GoalInterface[]> = this.db.list('goals', {
       query: {
-        orderByChild: 'priority'
+        orderByChild: 'priority',
       }
-    }).map(Goal.fromJsonArray);
+    }).map(Goal.fromJsonArray).map(items => items.sort(function (a, b) {
+      if (a.priority == b.priority) {
+        return (a.createdAt < b.createdAt) ? 1 : -1;
+      } else {
+        return (b.priority < a.priority) ? 1 : -1;
+      }
+    }));
+    return test;
   }
 
   getTasksForGoal(): Observable<TaskInterface[]> {
@@ -41,7 +48,7 @@ export class GoalsService {
     return this._goals$.update(goal.$key, changes);
   }
 
-  findTasksForGoal(goal:Goal):Observable<TaskInterface[]>{
+  findTasksForGoal(goal: Goal): Observable<TaskInterface[]> {
     return this.tasksService.getTasksForGoal(goal.$key);
   }
 
