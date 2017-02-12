@@ -1,3 +1,5 @@
-<p>
-  goal-list works!
-</p>
+<div class="masonry-layout" [dragula]='"bag-one"' [dragulaModel]='goals'>
+    <div class="masonry-layout__panel" *ngFor="let data of goals; let i=index;">
+        <app-goal [goal]="data">App Goal</app-goal>
+    </div>
+</div>

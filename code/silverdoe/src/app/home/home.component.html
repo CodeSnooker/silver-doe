@@ -38,14 +38,7 @@
             <app-new-goal>
                 <button (click)="addNewGoal()" md-button>Add New Goal!</button>
             </app-new-goal>
-            <div class="masonry-layout" [dragula]='"bag-one"' [dragulaModel]='goals'>
-                <div class="masonry-layout__panel" *ngFor="let data of goals; let i=index;">
-
-                    <app-goal [goal]="data">App Goal</app-goal>
-
-
-                </div>
-            </div>
+            <app-goal-list [goals]="goals"></app-goal-list>
         </div>
 
     </div>

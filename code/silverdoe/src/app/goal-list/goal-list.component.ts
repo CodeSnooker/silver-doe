@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { Goal, GoalInterface } from './../shared/model/goal';
 
 @Component({
   selector: 'app-goal-list',
@@ -7,8 +8,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class GoalListComponent implements OnInit {
 
-  constructor() { }
+  @Input() goals: GoalInterface[];
 
+  constructor() { }
   ngOnInit() {
   }
 
