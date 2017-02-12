@@ -11,13 +11,16 @@ import { Observable } from 'rxjs/Rx';
 
 export class GoalComponent implements OnInit {
 
-  @Input() goal:Goal;
+  @Input() goal: Goal;
 
-  constructor() { }
+  constructor(private goalsService: GoalsService) { }
 
   ngOnInit() {
   }
 
-  
+  onDeleteEvent() {
+    this.goalsService.removeGoal(this.goal);
+  }
+
 
 }
