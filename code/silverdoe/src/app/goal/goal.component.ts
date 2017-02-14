@@ -22,5 +22,9 @@ export class GoalComponent implements OnInit {
     this.goalsService.removeGoal(this.goal);
   }
 
+  onToggleArchiveEvent() {
+    this.goalsService.updateGoal(this.goal, {archived: !this.goal.archived});
+  }
+
 
 }

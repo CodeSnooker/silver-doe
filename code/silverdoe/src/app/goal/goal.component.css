@@ -4,10 +4,10 @@
     max-height: 52px;
     padding: 16px;
     background-color: #E8E8E8;
-    cursor: pointer;
+    cursor: move;
 }
 
-.sd-goal-header>h1 {
+.sd-goal-header>span {
     font-size: 22px;
     line-height: 28px;
     margin: 0px 5px 8px 10px;
@@ -17,6 +17,7 @@
     text-overflow: ellipsis;
     white-space: nowrap;
     overflow: hidden;
+    pointer-events: none;
 }
 
 .sd-goal-footer {

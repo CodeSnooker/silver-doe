@@ -32,6 +32,7 @@ import { TaskListComponent } from './task-list/task-list.component';
 import { GoalListComponent } from './goal-list/goal-list.component';
 import { PlannerComponent } from './planner/planner.component';
 import { NewGoalComponent } from './new-goal/new-goal.component';
+import { SidenavMenuComponent } from './sidenav-menu/sidenav-menu.component';
 
 @NgModule({
   declarations: [
@@ -44,6 +45,7 @@ import { NewGoalComponent } from './new-goal/new-goal.component';
     GoalListComponent,
     PlannerComponent,
     NewGoalComponent,
+    SidenavMenuComponent,
   ],
   imports: [
     BrowserModule,

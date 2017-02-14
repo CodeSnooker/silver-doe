@@ -1,5 +1,10 @@
 <md-sidenav-layout (keyup.escape)="closeSearch()">
-    <md-sidenav #sidenav mode="over"> </md-sidenav>
+    <md-sidenav #sidenav mode="over">
+
+        <app-sidenav-menu (on-view-goals)="onViewGoals($event)" (on-view-archived)="onViewArchived($event)">
+        </app-sidenav-menu>
+
+    </md-sidenav>
     <md-toolbar color="primary">
         <button (click)="sidenav.toggle()">
             <i class="material-icons">menu</i>
@@ -38,7 +43,7 @@
             <app-new-goal>
                 <button (click)="addNewGoal()" md-button>Add New Goal!</button>
             </app-new-goal>
-            <app-goal-list [goals]="goals"></app-goal-list>
+            <app-goal-list [goals]="filteredGoals"></app-goal-list>
         </div>
 
     </div>

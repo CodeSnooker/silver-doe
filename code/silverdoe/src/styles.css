@@ -88,3 +88,7 @@ button>md-icon {
     border-radius: 2px;
     border: 1px solid #979797;
 }
+
+.zeroPad {
+    padding: 0px !important;
+}

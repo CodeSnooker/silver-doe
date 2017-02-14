@@ -24,7 +24,7 @@ export class Goal implements GoalInterface {
         this.createdAt = new Date().getTime();
     }
 
-    static fromJson({$key, title, archived, createdAt, dueBy, priority}) : Goal {
+    static fromJson({$key, title, archived, createdAt, dueBy, priority}): Goal {
         let tempGoal: Goal = new Goal(title);
         tempGoal.archived = archived;
         tempGoal.createdAt = createdAt;
@@ -34,8 +34,22 @@ export class Goal implements GoalInterface {
         return tempGoal;
     }
 
+
     static fromJsonArray(json: any[]): Goal[] {
         return json.map(Goal.fromJson);
+    }
+
+    static sortByPriorityAndThenDate(json: any[]) {
+        return json.sort(this.sortByPriority);
+    }
+
+
+    private static sortByPriority(a: GoalInterface, b: GoalInterface): number {
+        if (a.priority == b.priority) {
+            return (a.createdAt < b.createdAt) ? 1 : -1;
+        } else {
+            return (b.priority < a.priority) ? 1 : -1;
+        }
     }
 
 

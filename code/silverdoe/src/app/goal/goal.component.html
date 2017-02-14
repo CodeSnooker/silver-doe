@@ -1,9 +1,7 @@
 <div class="sd-card">
 
     <!-- Title -->
-    <div class="sd-goal-header">
-        <h1>{{goal.title}}</h1>
-    </div>
+    <div class="sd-goal-header"><span>{{goal.title}}</span></div>
 
     <!-- Progress Bar -->
     <md-progress-bar value="50"></md-progress-bar>
@@ -12,6 +10,7 @@
 
     <div class="sd-goal-body">
         <br> Priority: {{goal.priority}}
+        <br> Archived: {{goal.archived}}
     </div>
 
     <!-- Footer -->
@@ -20,8 +19,11 @@
             <button md-tooltip="Copy" mdTooltipPosition="above" (click)="onCopyEvent($event)">
                 <i class="material-icons">content_copy</i>
             </button>
-            <button md-tooltip="Archive" mdTooltipPosition="above" (click)="onArchiveEvent($event)">
+            <button md-tooltip="Archive" *ngIf="!goal.archived" mdTooltipPosition="above" (click)="onToggleArchiveEvent($event)">
                 <i class="material-icons">archive</i>
+            </button>
+            <button md-tooltip="UnArchive" *ngIf="goal.archived" mdTooltipPosition="above" (click)="onToggleArchiveEvent($event)">
+                <i class="material-icons">unarchive</i>
             </button>
             <button md-tooltip="Print" mdTooltipPosition="above" (click)="onPrintEvent($event)">
                 <i class="material-icons">print</i>
