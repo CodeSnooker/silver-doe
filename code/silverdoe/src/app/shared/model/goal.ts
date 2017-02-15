@@ -43,10 +43,21 @@ export class Goal implements GoalInterface {
         return json.sort(this.sortByPriority);
     }
 
+    static clone(goal: Goal) {
+        let tempGoal: Goal = new Goal(goal.title + ' (clone)');
+        tempGoal.createdAt = new Date().getTime();
+        if (goal.dueBy) {
+            tempGoal.dueBy = goal.dueBy;
+        }
+        tempGoal.archived = goal.archived;
+
+        return tempGoal;
+    }
+
 
     private static sortByPriority(a: GoalInterface, b: GoalInterface): number {
         if (a.priority == b.priority) {
-            return (a.createdAt < b.createdAt) ? 1 : -1;
+            return (a.createdAt < b.createdAt) ? -1 : 1;
         } else {
             return (b.priority < a.priority) ? 1 : -1;
         }

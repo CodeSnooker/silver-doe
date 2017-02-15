@@ -1,7 +1,9 @@
 <div class="sd-card">
 
     <!-- Title -->
-    <div class="sd-goal-header"><span>{{goal.title}}</span></div>
+    <div class="sd-goal-header" [md-tooltip]="goal.title">
+        <h1>{{goal.title}}</h1>
+    </div>
 
     <!-- Progress Bar -->
     <md-progress-bar value="50"></md-progress-bar>
@@ -16,7 +18,7 @@
     <!-- Footer -->
     <div class="sd-goal-footer" sd-layout="row">
         <div sd-layout="row">
-            <button md-tooltip="Copy" mdTooltipPosition="above" (click)="onCopyEvent($event)">
+            <button md-tooltip="Copy" *ngIf="!goal.archived" mdTooltipPosition="above" (click)="onCopyEvent($event)">
                 <i class="material-icons">content_copy</i>
             </button>
             <button md-tooltip="Archive" *ngIf="!goal.archived" mdTooltipPosition="above" (click)="onToggleArchiveEvent($event)">

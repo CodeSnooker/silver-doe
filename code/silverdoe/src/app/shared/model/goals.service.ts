@@ -69,6 +69,10 @@ export class GoalsService {
     return this._goals$.push(new Goal(title));
   }
 
+  createClone(goal: GoalInterface): firebase.Promise<any> {
+    return this._goals$.push(Goal.clone(goal));
+  }
+
   /**
    * Removes given goal from the database
    */
