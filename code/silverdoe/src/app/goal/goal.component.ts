@@ -30,8 +30,8 @@ export class GoalComponent implements OnInit {
   ngOnInit() {
     this.goalElement = this.element.nativeElement.querySelector('.sd-card');
     this.goalCardStyle = this.element.nativeElement.querySelector('.sd-card').style;
-    this.goalCardStyle.width = this.goalElement.clientWidth + "px";
-    this.goalCardStyle.left = this.goalElement.offsetLeft + "px";
+    //this.goalCardStyle.width = this.goalElement.clientWidth + "px";
+    //this.goalCardStyle.left = this.goalElement.offsetLeft + "px";
   }
 
   onDeleteEvent($event: any) {

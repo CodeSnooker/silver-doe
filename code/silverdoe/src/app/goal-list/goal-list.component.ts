@@ -16,6 +16,7 @@ export class GoalListComponent implements OnInit, OnChanges {
 
   private _goalsModel: GoalInterface[];
   private activeEditGoal: GoalInterface;
+  private activeGoalDimensions: any;
 
 
   /**
@@ -75,16 +76,28 @@ export class GoalListComponent implements OnInit, OnChanges {
     });
   }
 
-  ngOnChanges() {}
+  ngOnChanges() { }
 
   private editGoal($event: any, goal: GoalInterface) {
-    console.log('Edit Goal Called => ', goal);
+
+    let element: any = document.getElementById('goal_' + goal.$key);
+    this.activeGoalDimensions = {
+      left: element.offsetLeft,
+      top: element.offsetTop
+    };
+
+
+    console.log('Edit Goal Called => ', element.offsetLeft, ', ', element.offsetTop);
     this.activeEditGoal = goal;
   }
 
   onCloseEditor() {
     console.log('Editor is closed now');
-    this.activeEditGoal = undefined;
+    setTimeout(()=>{
+      console.log('Goal is now undefined');
+      this.activeEditGoal = undefined;
+    }, 300);
+    
   }
 
 }

@@ -1,6 +1,6 @@
 <div class="masonry-layout" [dragula]='"bag-of-goals"' [dragulaModel]='goals'>
     <div class="masonry-layout__panel" *ngFor="let data of goals; let i=index;">
-        <app-goal [goal]="data" (click)="editGoal($event, data)">App Goal</app-goal>
+        <app-goal id="goal_{{data.$key}}" [goal]="data" (click)="editGoal($event, data)">App Goal</app-goal>
     </div>
 </div>
-<app-goal-editor [localGoal]="activeEditGoal" (onCloseEditor)="onCloseEditor() "></app-goal-editor>
+<app-goal-editor [localGoal]="activeEditGoal" [dimensions]="activeGoalDimensions" (onCloseEditor)="onCloseEditor() "></app-goal-editor>
