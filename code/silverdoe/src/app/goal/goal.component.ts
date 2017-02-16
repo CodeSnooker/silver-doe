@@ -14,8 +14,6 @@ export class GoalComponent implements OnInit {
 
   @Input() goal: Goal;
 
-  private overlayElement: any;
-  private overlayElementStyle: any;
   private goalElement: any;
   private goalCardStyle: any;
   private elementStyleHistory: any = {};

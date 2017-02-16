@@ -82,4 +82,9 @@ export class GoalListComponent implements OnInit, OnChanges {
     this.activeEditGoal = goal;
   }
 
+  onCloseEditor() {
+    console.log('Editor is closed now');
+    this.activeEditGoal = undefined;
+  }
+
 }

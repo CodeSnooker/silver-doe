@@ -3,4 +3,4 @@
         <app-goal [goal]="data" (click)="editGoal($event, data)">App Goal</app-goal>
     </div>
 </div>
-<app-goal-editor [localGoal]="activeEditGoal"></app-goal-editor>
+<app-goal-editor [localGoal]="activeEditGoal" (onCloseEditor)="onCloseEditor() "></app-goal-editor>

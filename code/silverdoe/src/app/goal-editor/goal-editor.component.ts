@@ -10,18 +10,21 @@ import { GoalsService } from './../shared/model/goals.service';
 export class GoalEditorComponent implements OnInit, OnChanges {
 
   @Input() localGoal: Goal;
-  @Output('on-edit-goal') onEditGoal: EventEmitter<void>;
+  @Output('onCloseEditor') onCloseEditorEmitter: EventEmitter<void>;
 
   private _goalAvailable: boolean = false;
   private overlayElement: any;
   private overlayElementStyle: any;
 
 
-  constructor(private element: ElementRef) { }
+  constructor(private element: ElementRef) {
+    this.onCloseEditorEmitter = new EventEmitter<void>();
+  }
 
   ngOnInit() {
     this.overlayElement = this.element.nativeElement.querySelector('.app-overlay');
     this.overlayElementStyle = this.overlayElement.style;
+
     console.log('#ngOnInit');
   }
 
@@ -55,6 +58,7 @@ export class GoalEditorComponent implements OnInit, OnChanges {
   private closeEditor() {
     this._goalAvailable = false;
     this.deActivateEditor();
+    this.onCloseEditorEmitter.emit();
   }
 
 }
