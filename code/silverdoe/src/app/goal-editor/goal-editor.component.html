@@ -1,0 +1,7 @@
+<div class="app-overlay anim" sd-layout="row">
+
+    <div style="padding:32px; background: transparent;" sd-flex="90" (click)="closeEditor($event)">
+        <app-goal *ngIf="_goalAvailable" [goal]="localGoal"></app-goal>
+    </div>
+
+</div>

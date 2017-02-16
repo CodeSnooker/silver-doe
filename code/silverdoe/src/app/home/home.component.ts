@@ -27,6 +27,8 @@ export class HomeComponent implements OnInit {
   private _textToSearch: string = '';
   private _searchActive: boolean = false;
 
+  private testGoal: GoalInterface;
+
   private goals: Observable<GoalInterface[]>;
   private filteredGoals: GoalInterface[];
   private archivedFilterStatus: boolean = false;
@@ -40,17 +42,18 @@ export class HomeComponent implements OnInit {
       if (auth) {
         this.name = auth;
         this.goals = goalsService.getGoals(false);
-        
+
         this.goals.subscribe(goals => {
           this.filteredGoals = [];
           for (let goal of goals) {
             this.filteredGoals.push(goal);
+            //this.testGoal = goal;
           }
         })
       }
     });
 
-    
+
 
   }
 
@@ -91,7 +94,7 @@ export class HomeComponent implements OnInit {
     }
   }
 
-  onViewGoals($event:any) {
+  onViewGoals($event: any) {
     console.log('On View Goals Pressed');
     this.goalsService.setGoalFilter(false);
   }
@@ -99,6 +102,6 @@ export class HomeComponent implements OnInit {
   onViewArchived($event: any) {
     console.log('On View Archived Pressed');
     this.goalsService.setGoalFilter(true);
-  } 
+  }
 
 }

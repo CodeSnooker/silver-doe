@@ -1,4 +1,4 @@
-<div class="sd-card">
+<div class="sd-card anim">
 
     <!-- Title -->
     <div class="sd-goal-header" [md-tooltip]="goal.title">
@@ -18,22 +18,22 @@
     <!-- Footer -->
     <div class="sd-goal-footer" sd-layout="row">
         <div sd-layout="row">
-            <button md-tooltip="Copy" *ngIf="!goal.archived" mdTooltipPosition="above" (click)="onCopyEvent($event)">
+            <button md-tooltip="Copy" *ngIf="!goal.archived" (click)="onCopyEvent($event)">
                 <i class="material-icons">content_copy</i>
             </button>
-            <button md-tooltip="Archive" *ngIf="!goal.archived" mdTooltipPosition="above" (click)="onToggleArchiveEvent($event)">
+            <button md-tooltip="Archive" *ngIf="!goal.archived" (click)="onToggleArchiveEvent($event)">
                 <i class="material-icons">archive</i>
             </button>
-            <button md-tooltip="UnArchive" *ngIf="goal.archived" mdTooltipPosition="above" (click)="onToggleArchiveEvent($event)">
+            <button md-tooltip="UnArchive" *ngIf="goal.archived" (click)="onToggleArchiveEvent($event)">
                 <i class="material-icons">unarchive</i>
             </button>
-            <button md-tooltip="Print" mdTooltipPosition="above" (click)="onPrintEvent($event)">
+            <button md-tooltip="Print">
                 <i class="material-icons">print</i>
             </button>
         </div>
         <div sd-flex></div>
         <div sd-layout="row">
-            <button md-tooltip="Delete" mdTooltipPosition="above" (click)="onDeleteEvent($event)">
+            <button md-tooltip="Delete" (click)="onDeleteEvent($event)">
             <i class="material-icons">delete</i>
     </button>
         </div>

@@ -13,11 +13,13 @@ export class GoalListComponent implements OnInit, OnChanges {
 
   @Input() goals: GoalInterface[] = [];
 
+
   private _goalsModel: GoalInterface[];
-  
+  private activeEditGoal: GoalInterface;
+
 
   /**
-   * 
+   * @Constructor
    */
   constructor(private dragulaService: DragulaService, private goalsService: GoalsService) { }
 
@@ -73,23 +75,11 @@ export class GoalListComponent implements OnInit, OnChanges {
     });
   }
 
-  // getUnArchived(goal: GoalInterface) {
-  //   return !goal.archived;
-  // }
+  ngOnChanges() {}
 
-  // getArchived(goal: GoalInterface) {
-  //   return goal.archived;
-  // }
-
-  ngOnChanges() {
-    //console.log('#on Changes called: ', this.goals ? this.goals.length : 'zero');
-    // if (this.goals) {
-    //   if (this.currentFilter != this.onlyActiveFilter) {
-    //     this.goals = this.goals.filter(this.getUnArchived);
-    //   }
-    // }
-
-
+  private editGoal($event: any, goal: GoalInterface) {
+    console.log('Edit Goal Called => ', goal);
+    this.activeEditGoal = goal;
   }
 
 }
