@@ -1,6 +1,7 @@
 import { Component, OnInit, Input, Output, EventEmitter, OnChanges, ElementRef } from '@angular/core';
 import { Goal, GoalInterface } from './../shared/model/goal';
 import { GoalsService } from './../shared/model/goals.service';
+import { HomeUIService } from './../home/home-ui.service';
 
 @Component({
   selector: 'app-goal-editor',
@@ -18,7 +19,7 @@ export class GoalEditorComponent implements OnInit, OnChanges {
   private overlayElementStyle: any;
 
 
-  constructor(private element: ElementRef) {
+  constructor(private element: ElementRef, private homeUIService: HomeUIService ) {
     this.onCloseEditorEmitter = new EventEmitter<void>();
   }
 
@@ -65,8 +66,16 @@ export class GoalEditorComponent implements OnInit, OnChanges {
         goalElement.style.width = '316px';
 
         setTimeout(() => {
+          //goalElement.style.left = '404px';
+          //goalElement.style.top  = '87px';
           goalElement.style.transitionDuration = '300ms'
-          goalElement.style.width = '620px';
+
+          let boundingRect = this.homeUIService.getBoundingRect();
+          goalElement.style.left = boundingRect.left + (boundingRect.width * 0.05) + 'px';
+          goalElement.style.top = boundingRect.top + 'px';
+          goalElement.style.width = (boundingRect.width * 0.9) + 'px';
+
+          //goalElement.style.width = this.homeUIService.getWidthAvailableForEditingGoal();
         }, 1);
 
 
