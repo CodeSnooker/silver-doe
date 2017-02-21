@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { GoalsService } from './../shared/model/goals.service';
 
 @Component({
@@ -8,7 +8,11 @@ import { GoalsService } from './../shared/model/goals.service';
 })
 export class NewGoalComponent implements OnInit {
 
-  constructor(private goalsService:GoalsService) { }
+    @Output('onAddingNewGoal') onAddingNewGoalEmitter: EventEmitter<string>; 
+
+  constructor(private goalsService:GoalsService) { 
+      this.onAddingNewGoalEmitter = new EventEmitter();
+  }
 
   ngOnInit() {
   }
@@ -21,7 +25,14 @@ export class NewGoalComponent implements OnInit {
         goalName = goalName.trim();
 
         if (goalName.length > 0) {
-            this.goalsService.createNewGoal(goalName);
+            this.goalsService.createNewGoal(goalName).then(abc=>{
+                let $key = abc.key;
+
+                // We have got the key for the newly added goal. 
+                // Here we can fire the event for editing this new goal.
+                this.onAddingNewGoalEmitter.emit($key);
+            });
+            
         }
 
         src.value = "";

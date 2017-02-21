@@ -78,7 +78,9 @@ export class GoalListComponent implements OnInit, OnChanges {
 
   ngOnChanges() { }
 
-  private editGoal($event: any, goal: GoalInterface) {
+  editGoal($event: any, goal: GoalInterface) {
+
+    console.log('Edit goal called for: ', goal.title);
 
     let element: any = document.getElementById('goal_' + goal.$key);
     this.activeGoalDimensions = {
@@ -93,11 +95,11 @@ export class GoalListComponent implements OnInit, OnChanges {
 
   onCloseEditor() {
     console.log('Editor is closed now');
-    setTimeout(()=>{
+    setTimeout(() => {
       console.log('Goal is now undefined');
       this.activeEditGoal = undefined;
     }, 300);
-    
+
   }
 
 }

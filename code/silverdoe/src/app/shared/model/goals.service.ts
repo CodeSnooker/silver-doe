@@ -48,6 +48,15 @@ export class GoalsService {
       .map(goals => goals.filter(goal => goal.archived == this._goalFilter$.getValue()));
   }
 
+  getGoal(key: string): Observable<Array<GoalInterface>> {
+
+    
+
+    return this._goals$
+      .map(Goal.fromJsonArray)
+      .map(goals => goals.filter(goal => goal.$key == key));
+  }
+
   /**
    * Returns Goals (filtered => Goal is active/archived) as Observable object 
    */

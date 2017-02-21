@@ -40,7 +40,7 @@
     <div class="app-content" sd-layout="row">
         <app-planner>Planner</app-planner>
         <div id="homeContainer" sd-flex="69" style="overflow: scroll;">
-            <app-new-goal id="new-goal">
+            <app-new-goal id="new-goal" (onAddingNewGoal)="onAddingNewGoal($event)">
                 <button (click)="addNewGoal()" md-button>Add New Goal!</button>
             </app-new-goal>
             <app-goal-list [goals]="filteredGoals"></app-goal-list>

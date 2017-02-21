@@ -35,7 +35,7 @@ export class GoalComponent implements OnInit {
   }
 
   onDeleteEvent($event: any) {
-    $event.stopPropagation();
+    //$event.stopPropagation();
     this.goalsService.removeGoal(this.goal).then(() => {
       this.showMessage('Goal deleted successfully');
     });
